@@ -1,0 +1,86 @@
+@CHARSET "UTF-8";
+.padding_10{
+	padding:10px;
+}
+.padding_l10{
+	padding-left:10px;
+}
+.text-color-ffffff {
+    color: #ffffff;
+}
+
+.text-align-right {
+    text-align: right;
+}
+.bgcolor1C6BB0 {
+    background-color: #1C6BB0;
+}
+
+.bgcolor5CB4FC {
+    background-color: #5CB4FC;
+}
+
+.bgcolorFFFFFF {
+    background-color: #FFFFFF;
+}
+
+.bgcolorF4F4F4 {
+    background-color: #F4F4F4;
+}
+
+.bgcolorC5C5C5{
+    background-color: #C5C5C5;
+}
+.bgcolorE8E6E7{
+    background-color: #E8E6E7;
+}
+.width100{
+    width: 100%;
+}
+.width30{
+    width: 30%;
+}
+.brand{
+    padding-top: 0 !important;
+}
+.navbar {
+    margin-bottom: 0;
+}
+.navbar-inner{
+    background-color: #FFFFFF;
+    border: 0px;
+    background-image: none;
+}
+.navactive {
+    border-bottom: 2px solid #8EB6D0;
+    padding-bottom: 1px;
+    background: transparent;
+}
+.navactive > a{
+    color: #8EB6D0 !important;
+}
+small{
+    font-size: 55%;
+    color: #8EB6D0;
+}
+.navbar-inner {
+    padding-top: 10px;
+}
+.teammenu ul{
+    padding-left: 20px;
+}
+.nav-tabs > li > a{
+    color: #333;
+}
+.nav-tabs > .active > a{
+    color: #08C !important;
+}
+.nav-stacked li{
+    line-height: 24px;
+    font-size: 12px;
+}
+.nav-stacked > a:hover {
+    color: #1C6BB0;
+}
+
+

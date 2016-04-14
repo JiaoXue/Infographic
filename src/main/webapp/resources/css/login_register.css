@@ -1,0 +1,156 @@
+@CHARSET "UTF-8";
+html {width:100%; height:100%;font-family: "Microsoft YaHei";}
+h1{
+	font-family: "Microsoft YaHei" ! important;
+	text-align:center;
+	font-size:40px;
+	color:#8A8686;
+}
+.h2{
+	font-family: "Microsoft YaHei" ! important;
+	text-align:center;
+	font-size:30px;
+	color:#8A8686;
+
+}
+.title{
+	font-family: "Microsoft YaHei" ! important;
+	font-size:36px;
+	vertical-align:middle;
+	color:#c0c0c0;
+	padding-left:10px;	
+}
+.float_right{
+	float:right;
+}
+.menu_style{
+	font-family: "Microsoft YaHei" ! important;
+	font-size:16px;
+	color:#6dbdff;
+	padding: 10px;
+}
+.menu_a_margin{
+	margin:0 15px;
+}
+.height_width{
+	width:504px;
+	height:600px;
+}
+.padding_20{
+	padding:20px;
+}
+.margin_20{
+	margin:20px !important;
+}
+.width_100{
+	width:100%;
+}
+.width_97{
+	width:97%;
+}
+.width_80{
+	width:80%;	
+}
+.width_65{
+	width:65%;	
+}
+.width_48{
+	width:48%;
+}
+.margin_auto{
+	margin:auto;
+}
+.margin_10{
+	margin:10px !important;
+}
+.background{
+	background-image:url(/debug/images/login_register/1.png);
+	background-repeat:no-repeat;
+}
+.body_background{
+	background:#f4f4f4;
+}
+.width_input{
+	width:330px;
+	height:auto;
+	padding:50px 0px;
+/* 	margin-top:70px; */
+}
+.width_input_2{
+	width:330px;
+	height:auto;
+	padding:70px 0px 15px;
+}
+.width_input_2{
+	width:330px;
+	height:auto;
+/* 	padding:70px 0px 15px; */
+}
+.background_input{
+/* 	background-image:url(/debug/images/login_register/zhuce_12.png); */
+	background-repeat:no-repeat;
+	background-color:white;
+}
+.button_position{
+	margin-top:20px;
+}
+label{
+	color:#818181;
+	font-family: "Microsoft YaHei" ! important;
+	padding:0 10px;
+}
+.down{
+	position:relative;
+	z-index:-1;
+}
+.up{
+	position:relative;
+	z-index:100;
+}
+.input_margin{
+	padding:10px 5px;
+}
+.middle_v{
+	vertical-align:middle;
+}
+.word_style{
+	border-right: solid rgb(224, 223, 223) 2px;
+	padding-right: 15px;
+}
+.input_style{
+	margin: 0px 15px ! important;
+	border-radius:5px ! important;
+}
+.Mybutton{
+	color: #ffffff;
+	background-color: #6ebdff;
+	 border-radius:5px ! important; 
+	font-size: 14px;
+	  
+	font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	  
+	text-decoration: none;
+	  text-align: center;
+	  
+	line-height: 35px;
+	  
+	height: auto;
+	  
+	width: auto;
+	padding: 0 10px;
+	  
+	margin: 0;
+	  display: inline-block;
+	  appearance: none;
+	  cursor: pointer;
+	  
+	border: none;
+	  -webkit-box-sizing: border-box;
+	     -moz-box-sizing: border-box;
+	          box-sizing: border-box;
+	  -webkit-transition-property: all;
+	          transition-property: all;
+	  -webkit-transition-duration: .3s;
+	          transition-duration: .3s;
+}
+
