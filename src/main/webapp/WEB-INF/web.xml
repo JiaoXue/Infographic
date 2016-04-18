@@ -2,18 +2,18 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"  
     version="2.5">  
-    <!-- 区分项目名称，防止默认重名 -->    
+ 	<!-- 区分项目名称，防止默认重名 --> 
     <context-param>    
         <param-name>webAppRootKey</param-name>    
         <param-value>maven.example.root</param-value>    
     </context-param>    
     
-    <!-- Spring的log4j监听器 -->    
+   <!-- Spring的log4j监听器 --> 
     <listener>    
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>    
     </listener>    
     
-    <!-- 字符集 过滤器  -->    
+  <!-- 字符集 过滤器  -->  
     <filter>    
         <filter-name>CharacterEncodingFilter</filter-name>    
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>    
@@ -47,6 +47,6 @@
     </servlet-mapping> 
          <welcome-file-list> 
         <welcome-file>index.jsp</welcome-file> 
-    </welcome-file-list>   
+    </welcome-file-list> 
   
 </web-app>  

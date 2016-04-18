@@ -14,6 +14,15 @@ public class UserController {
         System.out.println("index.jsp");    
     }
 	
+	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
+	public String home(Model model) {	
+		return "home";
+	}
+	
+	@RequestMapping(value = "/football_1.do", method = RequestMethod.GET)
+	public String football_1(Model model) {	
+		return "football_1";
+	}
 	
 	
 }

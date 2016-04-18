@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 <!-- 		input -->
 	    <div class=" margin_auto  height_width ">	
-	    	<div class="margin_20 width_97 background_input">
+	    	<div class="margin_20 width_97 background_input" style="border-radius: 25px;">
 				<div class="margin_auto width_input ">
 					<div class="width_100 margin_auto">
 		    			<div class="margin_auto">
@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</tr>
 								<tr style="height:70px;">
 									<td colspan="2" align="center" valign="middle">
-										<a href="javascript:void(0);" style="width:80%;" class="Mybutton button-action button-pill" onclick="$(this).closest('form').submit();">Log In</a>
+										<a href="<%=path %>/home.do" style="width:80%;" class="Mybutton button-action button-pill" onclick="">Log In</a>
 									</td>
 								</tr>
 							</table>
