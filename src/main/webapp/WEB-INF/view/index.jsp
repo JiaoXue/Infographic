@@ -34,13 +34,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="width_100 margin_auto">
 		    			<div class="margin_auto">
 		    			
-		    			<c:if test="${not empty error}">
-							<div class="text-error">${error}</div>
-						</c:if>
-						<c:if test="${not empty msg}">
-							<div class="text-success">${msg}</div>
-						</c:if>
-		    			
 		    			<form name="loginForm" action="<c:url value='/login' />" method="post">
 							<table>
 								<tr>
@@ -77,8 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</td>
 								</tr>
 							</table>
-							
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
 							
 						  </form>
 						</div>

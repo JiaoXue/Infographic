@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="header">	
       <div class="container"> 
   	     <div class="logo" style="padding: 10px;">
-			<h1>BBCSport Infographics</h1>
+			<h1>Infographics</h1>
 		 </div>
 		 <div class="top_right">
 		   <ul style="color:black;">

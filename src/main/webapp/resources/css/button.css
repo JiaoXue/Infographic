@@ -266,7 +266,7 @@
   .button-action:hover, .button-action:focus,
   .button-action-flat:hover,
   .button-action-flat:focus {
-    background-color: #2DC8CE;
+    background-color: rgba(62, 106, 143, 0.24);
     border-color: #2DC8CE;
     color: #FFF; }
   .button-action:active, .button-action.active, .button-action.is-active,
@@ -1490,3 +1490,7 @@
   height: 24px;
   line-height: 24px;
   padding: 0 24px; }
+  
+  
+  
+  

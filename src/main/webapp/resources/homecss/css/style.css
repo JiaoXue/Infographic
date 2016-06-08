@@ -15,7 +15,7 @@ body a{
 	-moz-transition: 0.5s all;
 }
 .header{
-	background:#FEDB47;
+	background:rgba(121, 115, 115, 0.57);
 	/*padding:1em 0;*/
 }
 .logo{
