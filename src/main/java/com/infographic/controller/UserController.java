@@ -8,7 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller 
 public class UserController {
 	
-	@RequestMapping(value="index.do"/*, method = RequestMethod.GET*/)    
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String index() {
+		return "index";
+	}
+	
+	/*@RequestMapping(value="index.do", method = RequestMethod.GET)    
     public void index(Model model){    
         model.addAttribute("str0121", "Hellow world");    
         System.out.println("index.jsp");    
@@ -22,7 +27,7 @@ public class UserController {
 	@RequestMapping(value = "/football_1.do", method = RequestMethod.GET)
 	public String football_1(Model model) {	
 		return "football_1";
-	}
+	}*/
 	
 	
 }
