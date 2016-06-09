@@ -9,6 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, height=device-height,initial-scale=1" />
 	<link rel="stylesheet" href="<%=path %>/resources/css/login_register.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="<%=path %>/resources/css/button.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="<%=path %>/resources/css/font-awesome.min.css"  type="text/css">
@@ -40,19 +41,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td></td>
 									<td>
 										<div style="float:right ! important;">
-	    									<a style="color:#BB6A52;float:right;" href="<%=path %>/sign_up_page">Sign Up</a>
+	    									<a style="color:#BB6A52;float:right;" href="">Sign Up</a>
 	    								</div>
 	    							</td>
 								</tr>
 								<tr>
 									<td class="input_margin">
-										<img src="<%=path %>/resources/images/signin_signup/icon-user.png"></td><td>
+										<i class = "fa fa-user"></i></td><td>
 										<input id="username" name="username" data-options="required:true,missingMessage:'Username is required.'"  type="text" class="input_style search-query baseline" placeholder="User Name">
 									</td>
 								</tr>
 								<tr>
 									<td class="input_margin">
-										<img src="<%=path %>/resources/images/signin_signup/icon-password.png"></td><td>
+										<i class = "fa fa-key"></i><td>
 										<input id="password" name="password" data-options="required:true,missingMessage:'Password is required.'" type="password" class="input_style search-query" placeholder="Password">
 									</td>
 								</tr>
@@ -60,13 +61,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td></td>
 									<td class="input_margin" >
 										<div style="margin:auto;">
-											<a style="color:#BB6A52;float:right;" href="<%=path %>/console/ChangeToLogin.action">Forget Password?</a>
+											<a style="color:#BB6A52;float:right;" href="">Forget Password?</a>
 										</div>
 									</td>
 								</tr>
 								<tr style="height:70px;">
 									<td colspan="2" align="center" valign="middle">
-										<a href="<%=path %>/home.do" style="width:80%;" class="Mybutton button-action button-pill" onclick="">Log In</a>
+										<a href="<%=path %>/home" style="width:80%;" class="Mybutton button-action button-pill" onclick="">Log In</a>
 									</td>
 								</tr>
 							</table>

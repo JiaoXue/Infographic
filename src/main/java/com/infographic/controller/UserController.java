@@ -13,21 +13,23 @@ public class UserController {
 		return "index";
 	}
 	
-	/*@RequestMapping(value="index.do", method = RequestMethod.GET)    
-    public void index(Model model){    
-        model.addAttribute("str0121", "Hellow world");    
-        System.out.println("index.jsp");    
-    }
 	
-	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
-	public String home(Model model) {	
-		return "home";
-	}
 	
-	@RequestMapping(value = "/football_1.do", method = RequestMethod.GET)
-	public String football_1(Model model) {	
-		return "football_1";
-	}*/
+//	@RequestMapping(value="index.do", method = RequestMethod.GET)    
+//    public void index(Model model){    
+//        model.addAttribute("str0121", "Hellow world");    
+//        System.out.println("index.jsp");    
+//    }
+//	
+//	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
+//	public String home(Model model) {	
+//		return "home";
+//	}
+//	
+//	@RequestMapping(value = "/football_1.do", method = RequestMethod.GET)
+//	public String football_1(Model model) {	
+//		return "football_1";
+//	}
 	
 	
 }
