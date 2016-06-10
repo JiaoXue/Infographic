@@ -22,20 +22,21 @@
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">    
         <property name="prefix" value="/WEB-INF/view/" />    
         <property name="suffix" value=".jsp" />    
-    </bean>  
+    </bean> 
     
-    <bean id="dataSource"  
-        class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>  
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/infographics"></property>  
-        <property name="username" value="root" />  
-        <property name="password" value="123456" />  
-    </bean>
-      
-    <bean id="jdbctemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
+    <context:property-placeholder location="classpath:database/db-config.properties"/>
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driver}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+    
+  
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
         <property name="dataSource" ref="dataSource"></property>  
     </bean>  
 
-    
-    
+
 </beans> 

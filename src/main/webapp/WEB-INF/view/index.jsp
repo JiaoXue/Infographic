@@ -15,7 +15,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="<%=path %>/resources/css/font-awesome.min.css"  type="text/css">
 	<link rel="stylesheet" href="<%=path %>/resources/css/bootstrap.css"  type="text/css">
     <script type="text/javascript" src="<%=path %>/resources/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="<%=path %>/resources/js/jQuery.md5.js"></script>
+    
 	<title>Login</title>
+	
+	<script type="text/javascript">
+    	
+		    function login(){
+		    	var md5pwd = $.md5($("#password").val());
+		    	alert(md5pwd);
+ 		    	$.ajax({
+		  		   type: "POST",
+		  		   url:'<%=path %>/login.action',
+		  		   data: "port=web&username="+$("#username").val()+"&password="+$.md5($("#password").val()),
+/* 		  		   success: function(data){
+		  			   if (data.success) {
+		  				  alert("ok!");
+// 		  				 if( (location.href).indexOf("console") != -1) 		 					 
+// 		 				  {
+// 		 					  window.location = "index.action";  
+// 		 				  }
+// 		 				  else
+// 		 				  {
+// 		 					 window.location = "console/index.action";  
+// 		 				  }
+		  				  
+		 				} else {
+		 					alert("wrong!");
+// 		 					window.location = location.href;
+		 				}
+		  		   } */
+		  		});
+				}
+    </script>
+	
+	
+	
 </head>
 <body class="body_background" style="min-width: 960px;">
 
@@ -67,11 +102,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</tr>
 								<tr style="height:70px;">
 									<td colspan="2" align="center" valign="middle">
-										<a href="<%=path %>/home" style="width:80%;" class="Mybutton button-action button-pill" onclick="">Log In</a>
+										<a href="#" style="width:80%;" class="Mybutton button-action button-pill" onclick="login();">Log In</a>
 									</td>
 								</tr>
 							</table>
-
 							
 						  </form>
 						</div>
