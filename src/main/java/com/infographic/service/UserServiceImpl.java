@@ -9,6 +9,8 @@ import com.infographic.dao.UserDAOImpl;
 import com.infographic.dao.interfaces.IUserDAO;
 import com.infographic.model.UserModel;
 import com.infographic.service.interfaces.IUserService;
+import com.infographic.common.util.UserExample;
+
 
 public class UserServiceImpl implements IUserService{
 	
@@ -40,10 +42,10 @@ public class UserServiceImpl implements IUserService{
 //	}
 
 	@Override
-	public String signin(String username, String password) {
+	public List<Map<String, Object>> signin(String username, String password) {	
 		return userDAO.checkUser(username, password);
 	}
-
+ 
 	@Override
 	public int getUserId(String username) {
 		return userDAO.getUserId(username);

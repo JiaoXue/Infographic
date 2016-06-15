@@ -23,12 +23,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	
 		    function login(){
 		    	var md5pwd = $.md5($("#password").val());
-		    	alert(md5pwd);
+/* 		    	alert(md5pwd); */
  		    	$.ajax({
 		  		   type: "POST",
 		  		   url:'<%=path %>/login.action',
 		  		   data: "port=web&username="+$("#username").val()+"&password="+$.md5($("#password").val()),
-/* 		  		   success: function(data){
+ 		  		   success: function(data){
 		  			   if (data.success) {
 		  				  alert("ok!");
 // 		  				 if( (location.href).indexOf("console") != -1) 		 					 
@@ -41,10 +41,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 // 		 				  }
 		  				  
 		 				} else {
-		 					alert("wrong!");
+		 					/* window.location = "home.action";   */
+//		 					alert("wrong!");
 // 		 					window.location = location.href;
 		 				}
-		  		   } */
+		  		   } 
 		  		});
 				}
     </script>

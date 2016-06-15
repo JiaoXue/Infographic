@@ -13,6 +13,6 @@ public interface IUserService {
 //	boolean createUser(UserModel myUser);
 //	boolean updateUser(UserModel myUser);
 //	boolean updateUserProfile(UserModel myUser);
-	String signin(String username, String password);
+	List<Map<String, Object>> signin(String username, String password);
 	
 }

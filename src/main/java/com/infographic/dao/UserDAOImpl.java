@@ -9,7 +9,9 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.infographic.dao.interfaces.IUserDAO;
+import com.infographic.common.util.UserExample;
 import com.infographic.model.UserModel;
+import org.apache.ibatis.annotations.Param;
 
 
 public class UserDAOImpl implements IUserDAO{
@@ -30,16 +32,23 @@ public class UserDAOImpl implements IUserDAO{
 		List<Map<String, Object>> user = jdbcTemplate.queryForList(sql);
 		return user;
 	}
+
+	
 	
 	@Override
-	public String checkUser(String username, String password) {
-		String sql = "SELECT id FROM infographics_user where username = '" + username + "' & password = '" + password + "'";
-		List<Map<String, Object>> users = jdbcTemplate.queryForList(sql);
+	public List<Map<String, Object>> checkUser(String username, String password) {
+	    
+		String sql = "SELECT id FROM infographics_user where username = '" + username + "' and password = '" + password + "'";
+		List<Map<String, Object>> users = jdbcTemplate.queryForList(sql);	
 		
-		if(users.isEmpty())
-			return "unsuccess";
-		else 
-			return users.get(0).get("user_id").toString();
+		if(users.isEmpty()) 
+			return null;
+		else{
+			String sql_1 = "SELECT * FROM infographics_user where username = '" + username + "' and password = '" + password + "'";
+			List<Map<String, Object>> user_info = jdbcTemplate.queryForList(sql_1);
+			return user_info;
+		}
+			
 	}
 	
 	@Override
@@ -47,6 +56,8 @@ public class UserDAOImpl implements IUserDAO{
 		String sql = "SELECT id FROM infographics_user where username = '" + username + "'";
 		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
+
+
 
 /*	@Override
 	public boolean createUser(UserModel user) {

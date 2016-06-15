@@ -27,22 +27,34 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.infographic.common.util.StringUtil;
 import com.infographic.model.UserModel;
 import com.infographic.service.UserServiceImpl;
 import com.infographic.service.interfaces.IUserService;
+import com.infographic.dao.interfaces.IUserDAO;
 
 @Controller 
 public class UserController {
 	
-//	@Autowired
-//	private UserServiceImpl userServiceImpl;
-//	@Autowired
-//	private IUserService iUserService;
+	@Autowired
+	private IUserDAO iUserDAO;
+	@Autowired
+	private UserServiceImpl userServiceImpl;
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
 		return "index";
+	}
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home(Model model) {	
+		return "home";
+	}
+	
+	@RequestMapping(value = "/football_1.do", method = RequestMethod.GET)
+	public String football_1(Model model) {	
+		return "football_1";
 	}
 	
 	@RequestMapping(value = "/login")
@@ -51,6 +63,28 @@ public class UserController {
 		String encryptedPassword = request.getParameter("password");
 
 		System.out.println(loginname + ":" + encryptedPassword);
+		
+		if (StringUtil.isEmpty(loginname)) {
+			System.out.println("登录名为空，登录失败");
+//			sendFailureMessage(response, "登录名不能为空，登录失败");
+			return;
+		}
+		if (StringUtil.isEmpty(encryptedPassword)) {
+			System.out.println("password为空，登录失败");
+//			sendFailureMessage(response, "密码不能为空，登录失败");
+			return;
+		}
+		
+		try{
+			List<Map<String, Object>> user = userServiceImpl.signin(loginname,encryptedPassword);
+			if (user != null) {
+				System.out.println("登录成功!");
+			} else {
+				System.out.println("登录失败!");
+			}
+		}catch (Exception e) {
+			System.out.println("111登录失败!");
+		}
 		
 		return;
 
@@ -75,22 +109,6 @@ public class UserController {
 //		  return model;
 //	}
 
-	
-//	@RequestMapping(value="index.do", method = RequestMethod.GET)    
-//    public void index(Model model){    
-//        model.addAttribute("str0121", "Hellow world");    
-//        System.out.println("index.jsp");    
-//    }
-//	
-//	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
-//	public String home(Model model) {	
-//		return "home";
-//	}
-//	
-//	@RequestMapping(value = "/football_1.do", method = RequestMethod.GET)
-//	public String football_1(Model model) {	
-//		return "football_1";
-//	}	
 	
 
 
