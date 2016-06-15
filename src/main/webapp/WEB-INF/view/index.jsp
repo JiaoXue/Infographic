@@ -30,7 +30,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  		   data: "port=web&username="+$("#username").val()+"&password="+$.md5($("#password").val()),
  		  		   success: function(data){
 		  			   if (data.success) {
-		  				  alert("ok!");
+		  				 window.location = "home.action"; 
+		  				 /* alert(data.msg); */
 // 		  				 if( (location.href).indexOf("console") != -1) 		 					 
 // 		 				  {
 // 		 					  window.location = "index.action";  
@@ -41,6 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 // 		 				  }
 		  				  
 		 				} else {
+		 					alert(data.msg);
 		 					/* window.location = "home.action";   */
 //		 					alert("wrong!");
 // 		 					window.location = location.href;

@@ -9,7 +9,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.infographic.dao.interfaces.IUserDAO;
-import com.infographic.common.util.UserExample;
 import com.infographic.model.UserModel;
 import org.apache.ibatis.annotations.Param;
 

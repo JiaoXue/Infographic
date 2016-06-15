@@ -34,5 +34,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/Users/apple/Downloads/ibatis-core-3.0.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Downloads/gson-2.6.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -27,14 +27,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.codehaus.jackson.map.ObjectMapper;
+
+import com.infographic.common.util.HtmlUtil;
 import com.infographic.common.util.StringUtil;
 import com.infographic.model.UserModel;
 import com.infographic.service.UserServiceImpl;
 import com.infographic.service.interfaces.IUserService;
 import com.infographic.dao.interfaces.IUserDAO;
+import com.infographic.controller.baseController;
 
 @Controller 
-public class UserController {
+public class UserController extends baseController{
 	
 	@Autowired
 	private IUserDAO iUserDAO;
@@ -78,9 +82,14 @@ public class UserController {
 		try{
 			List<Map<String, Object>> user = userServiceImpl.signin(loginname,encryptedPassword);
 			if (user != null) {
+				String userid = user.get(0).get("id").toString();
 				System.out.println("登录成功!");
+				sendSuccessMessage(response, userid);
+
 			} else {
+				System.out.println(user);
 				System.out.println("登录失败!");
+				sendFailureMessage(response, "登录失败！");
 			}
 		}catch (Exception e) {
 			System.out.println("111登录失败!");

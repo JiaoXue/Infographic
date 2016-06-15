@@ -9,7 +9,6 @@ import com.infographic.dao.UserDAOImpl;
 import com.infographic.dao.interfaces.IUserDAO;
 import com.infographic.model.UserModel;
 import com.infographic.service.interfaces.IUserService;
-import com.infographic.common.util.UserExample;
 
 
 public class UserServiceImpl implements IUserService{

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
-import com.infographic.common.util.UserExample;
 import com.infographic.model.UserModel;
 
 public interface IUserDAO {
