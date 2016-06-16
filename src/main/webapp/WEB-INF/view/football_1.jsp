@@ -7,10 +7,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Football Template</title>
-	
+	<title>Football Template</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, height=device-height,initial-scale=1" />
+	
 	<link rel="stylesheet" href="<%=path %>/resources/css/login_register.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="<%=path %>/resources/css/button.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="<%=path %>/resources/css/font-awesome.min.css"  type="text/css">
@@ -95,9 +95,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 	
-	<div style="min-height:570px;padding:30px;">
+	<div style="/* min-height:570px; */padding:30px;">
 	
-		<div style = "/* border:1px solid black; */margin:auto;width:80%;height:480px;">
+		<div style = "/* border:1px solid black; */margin:auto;width:80%;/* height:480px; */">
 			<table width="100%">
 				<tr style="padding:10psx 30px;border: 1px solid;">
 				  <th colspan="2" >
