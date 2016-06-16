@@ -70,11 +70,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class = "welcome">
 			Welcome to Infographic
 		</div>
-		<div style="width:51%; margin: 50px auto;">
-			<a href="#" style="margin:0px 15px;" class=" button button-action button-pill button-large">Create a Template</a>
+		<div style="margin: 50px auto;" align="center">
+			<a href="#" style="margin:15px 15px;" class=" button button-action button-pill button-large">Create a Template</a>
 			<a href="#" class=" button button-action button-pill button-large">Create an Infographic</a>
 		</div>
-		<div style="width:53%; margin:auto;">		
+		<div style="width:100%; margin:auto;" align="center">		
 			<img src="<%=path %>/resources/indexCss/back.jpg" alt=""/>
 		</div>
 	</div>
