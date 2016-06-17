@@ -3,7 +3,7 @@ h1, h2, h3 {margin-top: 0;}
 ul, ol {margin: 0;}
 p {margin: 0;}
 html, body{
-   font-family: Microsoft YaHei !important;
+   font-family: courier !important;
    font-size: 100%;
    background:rgba(247,244,239,1); 
    height:100%;

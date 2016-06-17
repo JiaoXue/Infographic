@@ -69,12 +69,12 @@ public class UserController extends baseController{
 		System.out.println(loginname + ":" + encryptedPassword);
 		
 		if (StringUtil.isEmpty(loginname)) {
-			System.out.println("登录名为空，登录失败");
+			System.out.println("Username is empty");
 //			sendFailureMessage(response, "登录名不能为空，登录失败");
 			return;
 		}
 		if (StringUtil.isEmpty(encryptedPassword)) {
-			System.out.println("password为空，登录失败");
+			System.out.println("password is empty");
 //			sendFailureMessage(response, "密码不能为空，登录失败");
 			return;
 		}
@@ -83,16 +83,16 @@ public class UserController extends baseController{
 			List<Map<String, Object>> user = userServiceImpl.signin(loginname,encryptedPassword);
 			if (user != null) {
 				String userid = user.get(0).get("id").toString();
-				System.out.println("登录成功!");
+				System.out.println("Success");
 				sendSuccessMessage(response, userid);
 
 			} else {
 				System.out.println(user);
-				System.out.println("登录失败!");
-				sendFailureMessage(response, "登录失败！");
+				System.out.println("Fail");
+				sendFailureMessage(response, "Invalid username and password!");
 			}
 		}catch (Exception e) {
-			System.out.println("111登录失败!");
+			System.out.println("111 Fail !");
 		}
 		
 		return;
