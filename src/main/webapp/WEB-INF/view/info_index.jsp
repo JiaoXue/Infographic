@@ -27,15 +27,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 </head>
-<div class="header">	
-  	     <div class="logo" style="padding: 10px;">
+
+<body style="height:100%;">
+<div id="wrapper">
+<!----------------------header begin----------------------->
+
+	<div class="header">	
+  	     <div class="logo" style="padding: 15px;">
 			<h1>Infographic</h1>
 		 </div>
 		 <div class="top_right">
 		   <ul style="color:black;">
-		    <li><img src="<%=path %>/resources/images/head/h_1.jpg" style="height:45px;" alt=""/></li>
+		    <li><img src="<%=path %>/resources/images/head/h_1.JPG" style="height:45px;border-radius:100px;" alt=""/></li>
 			<li><a href="">Sign Out</a></li>|
-			<li class="login" >
+		    <li class="login" >
 				 <div id="loginContainer"><a href="#" id="loginButton"><span>Account</span></a>
 					  <div id="loginBox">                
 						  <form id="loginForm">
@@ -58,135 +63,96 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     </div>
 		 <div class="clearfix"></div>
 	</div>
-	<div class="banner">
-		<div class="container">
-			<div class="span_1_of_1">
-			    <div class="search">
-			      <ul class="nav1">
-		            <li id="search">
-						<form action="" method="get">
-							<input type="text" name="search_text" id="search_text" placeholder="Search"/>
-							<input type="button" name="search_button" id="search_button">
-						</form>
-					</li>
-					<li id="options">
-						<a href="#">All</a>
-						<ul class="subnav">
-							<li><a href="#">Images</a></li>
-							<li><a href="#">Templates</a></li>
-							<li><a href="#">prototypes</a></li>
-						</ul>
-					</li>
-	              </ul>
-	            </div>
-			</div>
+<!----------------------header end----------------------->
+
+<!----------------------container begin----------------------->	
+	<div class="container">
+				<div class="content"><!-- start content -->
+					<h5>Infographic Templates</h5>
+					<h6>Choose a Template to create your infographic.</h6>
+					<ul class="hover_pack right">
+						<li>
+							 <a href="" class="b_btn"><span > <h4>Football</h4></span> </a>
+						</li>				 
+						<li>
+							<a href="">
+						    <img src="<%=path %>/resources/images/templates/football/football_1.png" class="img-responsive border-radius" alt=""/></a>
+						</li>		
+						<li>
+							<a href="" >
+				            <img src="<%=path %>/resources/images/templates/football/football_6.jpg" class="img-responsive border-radius" alt=""/></a>
+						</li>	
+						<div class="clear"></div>	
+					</ul>
+					<ul class="hover_pack left">
+						<li>
+							 <a href="" class="b_btn"><span > <h4>Text</h4></span> </a>
+						</li>
+						<li>
+							<a href="">
+				            <img src="<%=path %>/resources/images/templates/football/football_3.jpeg" class="img-responsive border-radius" alt=""/></a>
+						</li>				
+						<li>
+							<a href="">
+				            <img src="<%=path %>/resources/images/templates/football/football_4.png" class="img-responsive border-radius" alt=""/></a>
+						</li>	
+							
+						<div class="clear"></div>																																						
+					</ul>
+					<ul class="hover_pack left right">
+						<li>
+							 <a href="" class="b_btn"><span > <h4>New In</h4></span> </a>
+						</li>		
+						<li>
+							<a href="" >
+				            <img src="<%=path %>/resources/images/templates/football/football_5.jpeg" class="img-responsive border-radius" alt=""/></a>
+						</li>				
+						<li>
+							<a href="">
+				            <img src="<%=path %>/resources/images/templates/football/football_2.jpeg" class="img-responsive border-radius" alt=""/></a>
+						</li>
+						<div class="clear"></div>																																						
+					</ul>
+					<ul class="hover_pack left">
+						<li>
+							 <a href="" class="b_btn"><span > <h4>Euros</h4></span> </a>
+						</li>
+						<li>
+							<a href="" >
+				            <img src="<%=path %>/resources/images/templates/people.png" class="img-responsive border-radius" alt=""/></a>
+						</li>	
+							
+						<li>
+							<a href="">
+				            <img src="<%=path %>/resources/images/templates/NewTemplate.jpg" class="img-responsive border-radius" alt=""/></a>
+						</li>	
+						<div class="clear"></div>																																						
+					</ul>
+					<div class="clear"></div>	
+				</div>
+	</div>
+	<div id='push'></div>
+</div>
+<!----------------------container end----------------------->	
+
+<!----------------------footer begin----------------------->	
+
+	<div id = "footer" class="grid_2v footer" style ="border-top: solid 1px rgba(29, 43, 49, 0.34);">
+		    <div class="grid_3">
+		  <div>
+		  	 <ul id="footer-links">
+				<li><a href=" ">Support</a></li>
+				<li><a href=" ">About Us</a></li>
+				<li><a href=" ">FAQ</a></li>
+	         </ul>
+	         <p>Copyright &copy; 2016</p>
+		  </div>
 		</div>
 	</div>
-	<div class="grid_1">
-		<div class="col-md-2 col_1">
-			<h4>Football</h4>
-		</div>
-		<div class="col-md-2 col_1">
-			<a href="<%=path %>/football_1.do"><img src="<%=path %>/resources/images/templates/football2.jpg" class="img-responsive" alt=""/></a>
-		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/football2.jpg" class="img-responsive" alt=""/>
-		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/football2.jpg" class="img-responsive" alt=""/>		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/football2.jpg" class="img-responsive" alt=""/>		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/football2.jpg" class="img-responsive" alt=""/>		</div>
-		<div class="col-md-2 col_1">
-			<h4>people</h4>
-		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/people.png" class="img-responsive" alt=""/>		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/people.png" class="img-responsive" alt=""/>		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/people.png" class="img-responsive" alt=""/>		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/people.png" class="img-responsive" alt=""/>		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/people.png" class="img-responsive" alt=""/>		</div>
-		<div class="col-md-2 col_1">
-			<h4>New Templates</h4>
-		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/NewTemplate.jpg" class="img-responsive" alt=""/>		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/NewTemplate.jpg" class="img-responsive" alt=""/>		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/NewTemplate.jpg" class="img-responsive" alt=""/>		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/NewTemplate.jpg" class="img-responsive" alt=""/>		</div>
-		<div class="col-md-2 col_1">
-			<img src="<%=path %>/resources/images/templates/NewTemplate.jpg" class="img-responsive" alt=""/>		</div>
-		<div class="clearfix"> </div>
-	</div>
-    
-	<div class="grid_2">
-		<div class="container"> 
-			<div class="col-md-3 col_2">
-				<h3>Searching<br>Keywords</h3>
-			</div>
-			<div class="col-md-9 col_5">
-				<div class="col_1_of_5 span_1_of_5">
-					<ul class="list1">
-					    <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-		            </ul>
-				</div>
-				<div class="col_1_of_5 span_1_of_5">
-					<ul class="list1">
-					    <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-		            </ul>
-				</div>
-				<div class="col_1_of_5 span_1_of_5">
-					<ul class="list1">
-					    <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-		            </ul>
-				</div>
-				<div class="col_1_of_5 span_1_of_5">
-					<ul class="list1">
-					    <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-			            <li><a href="">Infographic</a></li>
-		            </ul>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<div class="grid_3">
-	  <div class="container">
-	  	 <ul id="footer-links">
-			<li><a href=" ">Support</a></li>
-			<li><a href=" ">About Us</a></li>
-			<li><a href=" ">FAQ</a></li>
-         </ul>
-         <p>Copyright &copy; 2016</p>
-	  </div>
-	</div>
+
+<!----------------------footer end----------------------->			
 </body>
+
+
+
 </html>

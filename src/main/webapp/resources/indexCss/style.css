@@ -36,15 +36,106 @@ body a{
 					}
 .welcome{
 	margin:auto;
-	width:51.1%;
-	font-size: 60px;
-	margin-top:150px;'
+/* 	width:51.1%;
+ */	font-size: 60px;
+	margin-top:150px;
+	align:center;
 }
+.border-radius{
+	border-radius:25px;
+}
+
 .margin_b{
 	margin:0px 10px;
 }
 
+.content {
+    text-align: center;
+    padding: 4%;
+}
+.content h5 {
+    font-size: 2.5em;
+    text-transform: uppercase;
+    margin-bottom: 2%;
+    color: #4B4949;
+    text-shadow: 0 1px 0 rgb(83, 83, 83);
+    -webkit-text-shadow: 0 1px 0 rgb(83, 83, 83);
+    -moz-text-shadow: 0 1px 0 rgb(83, 83, 83);
+    -o-text-shadow: 0 1px 0 rgb(83, 83, 83);
+}
 
+.content h6 {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 1em;
+    color: #292929;
+    line-height: 1.8em;
+}
+.hover_pack {
+    float: left;
+    width: 22.333333%;
+}
+.hover_pack.left {
+    margin-left: 3.33333%;
+}
+
+.hover_pack li {
+    margin: 14% 0;
+}
+
+.hover_pack li a.b_btn {
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid rgb(218, 218, 218);
+    color: #404040;
+    background: #ffffff;
+    display: block;
+    width: 195px;
+    height: 195px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -o-border-radius: 100px;
+    box-shadow: 0px 5px 1px #CCCCCC;
+    -webkit-box-shadow: 0px 5px 1px #CCCCCC;
+    -moz-box-shadow: 0px 5px 1px #CCCCCC;
+    -o-box-shadow: 0px 5px 1px #CCCCCC;
+}
+
+.hover_pack li a.b_btn span {
+    display: block;
+    top: 70px;
+    position: relative;
+}
+
+.b_btn h4 {
+    text-transform: capitalize;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.b_btn p {
+    font-size: 1em;
+}
+
+.hover_pack li a.b_btn:hover, .hover_pack li a.b_btn:hover > h4 {
+    color: #ffffff;
+    background: #6C87BE;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -o-border-radius: 100px;
+}
+
+ol, ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
 
 
@@ -66,8 +157,8 @@ body a{
        text-transform: uppercase;
  */ 
     margin-bottom: 0;
-    font-family: 'Quicksand', sans-serif;
-}
+/*     font-family: 'Quicksand', sans-serif;
+ */}
 .logo h1 a{
 	color:#000000;
 }

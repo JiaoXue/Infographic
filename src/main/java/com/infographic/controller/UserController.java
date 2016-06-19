@@ -56,6 +56,12 @@ public class UserController extends baseController{
 		return "home";
 	}
 	
+	@RequestMapping(value = "/info_index", method = RequestMethod.GET)
+	public String info_index(Model model) {	
+		return "info_index";
+	}
+	
+	
 	@RequestMapping(value = "/football_1.do", method = RequestMethod.GET)
 	public String football_1(Model model) {	
 		return "football_1";
@@ -70,12 +76,12 @@ public class UserController extends baseController{
 		
 		if (StringUtil.isEmpty(loginname)) {
 			System.out.println("Username is empty");
-//			sendFailureMessage(response, "登录名不能为空，登录失败");
+			sendFailureMessage(response, "Username is empty");
 			return;
 		}
 		if (StringUtil.isEmpty(encryptedPassword)) {
 			System.out.println("password is empty");
-//			sendFailureMessage(response, "密码不能为空，登录失败");
+			sendFailureMessage(response, "Password is empty");
 			return;
 		}
 		

@@ -18,12 +18,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" href="<%=path %>/resources/css/button.css" type="text/css" media="screen">
 <script type="text/javascript" src="<%=path %>/resources/homecss/js/jquery-1.11.1.min.js"></script>
 <script src="<%=path %>/resources/homecss/js/menu_jquery.js"></script>
+
 <script type="application/x-javascript"> 
 	addEventListener("load", function() { 
 		setTimeout(hideURLbar, 0); }, false); 
 	function hideURLbar(){ window.scrollTo(0,1);
 	} 
 </script>
+
+<script>
+function noContent(){
+	alert("Under Construction,Coming Soon");
+}
+</script>
+
 </head>
 
 <!----------------------body----------------------->
@@ -67,12 +75,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!----------------------container begin----------------------->	
 	<div class="container">
-		<div class = "welcome">
+		<div class = "welcome" align="center">
 			Welcome to Infographic
 		</div>
 		<div style="margin: 50px auto;" align="center">
-			<a href="#" style="margin:15px 15px;" class=" button button-action button-pill button-large">Create a Template</a>
-			<a href="#" class=" button button-action button-pill button-large">Create an Infographic</a>
+			<a href="#" style="margin:15px 15px;" class=" button button-action button-pill button-large" onclick="noContent();">Create a Template</a>
+			<a href="<%=path %>/info_index.do" class=" button button-action button-pill button-large">Create an Infographic</a>
 		</div>
 		<div style="width:100%; margin:auto;" align="center">		
 			<img src="<%=path %>/resources/indexCss/back.jpg" alt=""/>
