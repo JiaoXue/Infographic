@@ -46,26 +46,26 @@ public class UserController extends baseController{
 	private UserServiceImpl userServiceImpl;
 	
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index() {
-		return "index";
-	}
-	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home(Model model) {	
-		return "home";
-	}
-	
-	@RequestMapping(value = "/info_index", method = RequestMethod.GET)
-	public String info_index(Model model) {	
-		return "info_index";
-	}
-	
-	
-	@RequestMapping(value = "/football_1.do", method = RequestMethod.GET)
-	public String football_1(Model model) {	
-		return "football_1";
-	}
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String index() {
+//		return "index";
+//	}
+//	
+//	@RequestMapping(value = "/home", method = RequestMethod.GET)
+//	public String home(Model model) {	
+//		return "home";
+//	}
+//	
+//	@RequestMapping(value = "/info_index", method = RequestMethod.GET)
+//	public String info_index(Model model) {	
+//		return "info_index";
+//	}
+//	
+//	
+//	@RequestMapping(value = "/football_1.do", method = RequestMethod.GET)
+//	public String football_1(Model model) {	
+//		return "football_1";
+//	}
 	
 	@RequestMapping(value = "/login")
 	public void login(HttpServletRequest request, HttpServletResponse response) {
@@ -90,6 +90,7 @@ public class UserController extends baseController{
 			if (user != null) {
 				String userid = user.get(0).get("id").toString();
 				System.out.println("Success");
+				System.out.println(userid);
 				sendSuccessMessage(response, userid);
 
 			} else {

@@ -48,7 +48,7 @@ function noContent(){
 		   <ul style="color:black;">
 		    <li><img src="<%=path %>/resources/images/head/h_1.JPG" style="height:45px;border-radius:100px;" alt=""/></li>
 			<li><a href="">Sign Out</a></li>|
-		    <li class="login" >
+			<li class="login" >
 				 <div id="loginContainer"><a href="#" id="loginButton"><span>Account</span></a>
 					  <div id="loginBox">                
 						  <form id="loginForm">
@@ -93,41 +93,7 @@ function noContent(){
 <!----------------------footer begin----------------------->	
 
 	<div id = "footer" class="grid_2v footer" style ="border-top: solid 1px rgba(29, 43, 49, 0.34);">
-<!-- 		<div class="container">
-			<div class="col-md-3 col_2">
-				<h3>Searching<br>Keywords</h3>
-			</div>
-			<div class="col-md-9 col_5">
-				<div class="col_1_of_5 span_1_of_5">
-					<ul class="list1">
-					    <li><a href="">Football</a></li>
-			            <li><a href="">Basketball</a></li>
-			           
-		            </ul>
-				</div>
-				<div class="col_1_of_5 span_1_of_5">
-					<ul class="list1">
-					    <li><a href="">Rugby Union</a></li>
-			            <li><a href="">Rugby League</a></li>
-			            
-		            </ul>
-				</div>
-				<div class="col_1_of_5 span_1_of_5">
-					<ul class="list1">
-					     <li><a href="">Formula 1</a></li>
-			            <li><a href="">Cricket</a></li>
-		            </ul>
-				</div>
-				<div class="col_1_of_5 span_1_of_5">
-					<ul class="list1">
-					    <li><a href="">Tennis</a></li>
-			            <li><a href="">American Football</a></li>
-		            </ul>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-			<div class="clearfix"> </div>
-		</div> -->
+
 		    <div class="grid_3">
 		  <div>
 		  	 <ul id="footer-links">
