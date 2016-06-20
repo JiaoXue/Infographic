@@ -15,8 +15,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <link href="<%=path %>/resources/homecss/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="<%=path %>/resources/indexCss/style.css" rel='stylesheet' type='text/css' />
+<link href="<%=path %>/resources/css/semantic.css" rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="<%=path %>/resources/css/font-awesome.min.css"  type="text/css">
 
 <script type="text/javascript" src="<%=path %>/resources/homecss/js/jquery-1.11.1.min.js"></script>
+<script src="<%=path %>/resources/js/semantic.js"></script>
 <script src="<%=path %>/resources/homecss/js/menu_jquery.js"></script>
 <script type="application/x-javascript"> 
 	addEventListener("load", function() { 
@@ -69,7 +72,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="container">
 				<div class="content"><!-- start content -->
 					<h5>Infographic Templates</h5>
-					<h6>Choose a Template to create your infographic.</h6>
+					<h6 style="margin:30px auto;">Choose a Template to create your infographic.</h6>
+					
+					<div style="width:100%;align:center;">	
+						<div style="width:30%;" class="ui action input">
+						  <input type="text" placeholder="Search for infographics">
+						  <button class="ui icon button">
+						    <i class="fa fa-search"></i>
+						  </button>
+						</div>
+					</div>
+					
 					<ul class="hover_pack right">
 						<li>
 							 <a href="" class="b_btn"><span > <h4>Football</h4></span> </a>
