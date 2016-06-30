@@ -42,7 +42,6 @@ import com.infographic.controller.baseController;
 
 
 @Controller 
-//@SessionAttributes(value="currentUser")
 public class UserController extends baseController{
 	
 	@Autowired
@@ -74,6 +73,7 @@ public class UserController extends baseController{
 			List<Map<String, Object>> user = userServiceImpl.signin(loginname,encryptedPassword);
 			if (user != null) {
 				String userid = user.get(0).get("id").toString();
+				
 				System.out.println("Success"); 
 				sendSuccessMessage(response, userid);
 				
@@ -103,18 +103,24 @@ public class UserController extends baseController{
 //		usrId = SessionUtils.getUser(request).getId();
 		HttpSession session = request.getSession();
 		String sessionId = session.getId();
-		System.out.println(sessionId);
-		System.out.println(session.getAttribute("usersid"));
+		String userId = (String)session.getAttribute("usersid");
 		
-		sendSuccessMessage(response,(String)session.getAttribute("usersid"));
+		List<Map<String, Object>> user = userServiceImpl.selectUser(Integer.parseInt(userId));
+		String photo_url = user.get(0).get("photo_url").toString();
+		sendSuccessMessage(response, photo_url);
+		//		System.out.println(user);
+//		System.out.println(sessionId);
+//		System.out.println(session.getAttribute("usersid"));
+		
+//		sendSuccessMessage(response,userId);
 		
 //		Date createTime = new Date(session.getCreationTime());
 //		System.out.println(createTime);
-		if (session.isNew()) {
-			System.out.println("session创建成功，session的id是："+sessionId);
-			}else {
-			System.out.println("服务器已经存在session，session的id是："+sessionId);
-			}
+//		if (session.isNew()) {
+//			System.out.println("session创建成功，session的id是："+sessionId);
+//			}else {
+//			System.out.println("服务器已经存在session，session的id是："+sessionId);
+//			}
 
 		return;
 	}

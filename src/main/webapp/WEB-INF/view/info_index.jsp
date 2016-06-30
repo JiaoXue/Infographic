@@ -59,7 +59,7 @@ $(document).ready(function(){
 		 </div>
 		 <div class="top_right">
 		   <ul style="color:black;">
-		    <li><img src="<%=path %>/resources/images/head/h_1.JPG" style="height:45px;border-radius:100px;" alt=""/></li>
+		    <li><img src="<%=path %>/resources/images/head/1.JPG" style="height:45px;border-radius:100px;" alt=""/></li>
 			<li><a href="">Sign Out</a></li>|
 		    <li class="login" >
 				 <div id="loginContainer"><a href="#" id="loginButton"><span>Account</span></a>

@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="<%=path %>/resources/homecss/js/jquery-1.11.1.min.js"></script>
 <script src="<%=path %>/resources/homecss/js/menu_jquery.js"></script>
 
-<script type="text/javascript"> 
+<%-- <script type="text/javascript"> 
 $(document).ready(function(){
 	$.ajax({
 		   type: "POST",
@@ -29,15 +29,14 @@ $(document).ready(function(){
 		   data: "web",
 		   success: function(data){
 			   if (data.success) {
- 				  alert(data.msg); 
-				  
 				} else {
 	 			  alert(data.msg);
+	 			  
 				}
 		   } 
 		});
 	});
-</script>
+</script> --%>
 
 <script>
 function noContent(){
@@ -61,7 +60,7 @@ function noContent(){
 		 </div>
 		 <div class="top_right">
 		   <ul style="color:black;">
-		    <li><img src="<%=path %>/resources/images/head/h_1.JPG" style="height:45px;border-radius:100px;" alt=""/></li>
+		    <li><img id="photo" src="<%=path %>/resources/images/head/<%= (String)session.getAttribute("usersid") %>.jpg" style="height:45px;border-radius:100px;" alt=""/></li>
 			<li><a href="">Sign Out</a></li>|
 			<li class="login" >
 				 <div id="loginContainer"><a href="#" id="loginButton"><span>Account</span></a>
