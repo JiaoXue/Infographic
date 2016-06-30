@@ -28,7 +28,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import com.infographic.common.util.SessionUtils;
 import com.infographic.common.util.HtmlUtil;
 import com.infographic.common.util.StringUtil;
 import com.infographic.model.UserModel;
@@ -37,7 +40,9 @@ import com.infographic.service.interfaces.IUserService;
 import com.infographic.dao.interfaces.IUserDAO;
 import com.infographic.controller.baseController;
 
+
 @Controller 
+//@SessionAttributes(value="currentUser")
 public class UserController extends baseController{
 	
 	@Autowired
@@ -46,29 +51,9 @@ public class UserController extends baseController{
 	private UserServiceImpl userServiceImpl;
 	
 	
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String index() {
-//		return "index";
-//	}
-//	
-//	@RequestMapping(value = "/home", method = RequestMethod.GET)
-//	public String home(Model model) {	
-//		return "home";
-//	}
-//	
-//	@RequestMapping(value = "/info_index", method = RequestMethod.GET)
-//	public String info_index(Model model) {	
-//		return "info_index";
-//	}
-//	
-//	
-//	@RequestMapping(value = "/football_1.do", method = RequestMethod.GET)
-//	public String football_1(Model model) {	
-//		return "football_1";
-//	}
-	
 	@RequestMapping(value = "/login")
 	public void login(HttpServletRequest request, HttpServletResponse response) {
+		
 		String loginname = request.getParameter("username");
 		String encryptedPassword = request.getParameter("password");
 
@@ -89,9 +74,14 @@ public class UserController extends baseController{
 			List<Map<String, Object>> user = userServiceImpl.signin(loginname,encryptedPassword);
 			if (user != null) {
 				String userid = user.get(0).get("id").toString();
-				System.out.println("Success");
-				System.out.println(userid);
+				System.out.println("Success"); 
 				sendSuccessMessage(response, userid);
+				
+				HttpSession session = request.getSession();
+				String sessionId = session.getId();
+				session.setAttribute("usersid", userid);
+				
+				System.out.println(session.getAttribute("usersid"));
 
 			} else {
 				System.out.println(user);
@@ -105,25 +95,36 @@ public class UserController extends baseController{
 		return;
 
 	}
+	
+	@RequestMapping(value = "/GetUserInfo")
+	public void GetUserInfo(HttpServletRequest request,
+			HttpServletResponse response) {
+		int usrId = 0;
+//		usrId = SessionUtils.getUser(request).getId();
+		HttpSession session = request.getSession();
+		String sessionId = session.getId();
+		System.out.println(sessionId);
+		System.out.println(session.getAttribute("usersid"));
+//		Date createTime = new Date(session.getCreationTime());
+//		System.out.println(createTime);
+		if (session.isNew()) {
+			System.out.println("session创建成功，session的id是："+sessionId);
+			}else {
+			System.out.println("服务器已经存在session，session的id是："+sessionId);
+			}
+//		List<Map<String, Object>> userInfo = userServiceImpl.selectUser(usrId);
+//		Map<String, Object> result = new HashMap<String, Object>();
+//			result.put("SUCCESS", true);
+//			result.put("data", userInfo);
+//			System.out.println("Success");
+//			System.out.println(result);
+//			sendObject(response, result);
+		return;
+	}
+	
 }
 	
-//	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
-//	public ModelAndView  login(@RequestParam(value = "error", required = false) String error,
-//			@RequestParam(value = "logout", required = false) String logout) {
-//
-//		ModelAndView model = new ModelAndView();
-//		  if (error != null) {
-//			model.addObject("error", "Invalid username and password!");
-//		  }
-//
-//		  if (logout != null) {
-//			model.addObject("msg", "You've been logged out successfully.");
-//		  }
-//		  
-//		  model.setViewName("login");
-//
-//		  return model;
-//	}
+
 
 	
 

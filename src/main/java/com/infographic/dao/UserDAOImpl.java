@@ -27,7 +27,7 @@ public class UserDAOImpl implements IUserDAO{
 
 	@Override
 	public List<Map<String, Object>> selectUser(int id) {
-		String sql = "SELECT * FROM infographics_user where id = "+ id;
+		String sql = "SELECT * FROM user where id = "+ id;
 		List<Map<String, Object>> user = jdbcTemplate.queryForList(sql);
 		return user;
 	}
@@ -37,13 +37,13 @@ public class UserDAOImpl implements IUserDAO{
 	@Override
 	public List<Map<String, Object>> checkUser(String username, String password) {
 	    
-		String sql = "SELECT id FROM infographics_user where username = '" + username + "' and password = '" + password + "'";
+		String sql = "SELECT id FROM user where username = '" + username + "' and password = '" + password + "'";
 		List<Map<String, Object>> users = jdbcTemplate.queryForList(sql);	
 		
 		if(users.isEmpty()) 
 			return null;
 		else{
-			String sql_1 = "SELECT * FROM infographics_user where username = '" + username + "' and password = '" + password + "'";
+			String sql_1 = "SELECT * FROM user where username = '" + username + "' and password = '" + password + "'";
 			List<Map<String, Object>> user_info = jdbcTemplate.queryForList(sql_1);
 			return user_info;
 		}
@@ -52,7 +52,7 @@ public class UserDAOImpl implements IUserDAO{
 	
 	@Override
 	public int getUserId(String username) {
-		String sql = "SELECT id FROM infographics_user where username = '" + username + "'";
+		String sql = "SELECT id FROM user where username = '" + username + "'";
 		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 

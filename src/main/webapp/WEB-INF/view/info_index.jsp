@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="<%=path %>/resources/homecss/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="<%=path %>/resources/indexCss/style.css" rel='stylesheet' type='text/css' />
 <link href="<%=path %>/resources/css/semantic.css" rel='stylesheet' type='text/css' />
-<link rel="stylesheet" href="<%=path %>/resources/css/font-awesome.min.css"  type="text/css">
+<link href="<%=path %>/resources/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
 
 <script type="text/javascript" src="<%=path %>/resources/homecss/js/jquery-1.11.1.min.js"></script>
 <script src="<%=path %>/resources/js/semantic.js"></script>
@@ -28,10 +28,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	} 
 </script>
 
+<script type="text/javascript"> 
+$(document).ready(function(){
+	$.ajax({
+		   type: "POST",
+		   url:'<%=path %>/GetUserInfo.action',
+		   data: "web",
+		   success: function(data){
+			   if (data.success) {
+ 				  alert(data.msg); 
+				  
+				} else {
+	 			  alert(data.msg);
+				}
+		   } 
+		});
+	});
+</script>
 
 </head>
 
 <body style="height:100%;">
+
 <div id="wrapper">
 <!----------------------header begin----------------------->
 
@@ -92,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						    <img src="<%=path %>/resources/images/templates/football/football_1.png" class="img-responsive border-radius" alt=""/></a>
 						</li>		
 						<li>
-							<a href="" >
+							<a href="<%=path %>/football_1" >
 				            <img src="<%=path %>/resources/images/templates/football/football_6.jpg" class="img-responsive border-radius" alt=""/></a>
 						</li>	
 						<div class="clear"></div>	

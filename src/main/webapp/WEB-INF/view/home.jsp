@@ -5,8 +5,9 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<html style="height:100%;">
-<head style="height:100%;">
+
+<html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home Page</title>
 
@@ -15,15 +16,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <link href="<%=path %>/resources/homecss/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="<%=path %>/resources/indexCss/style.css" rel='stylesheet' type='text/css' />
-<link rel="stylesheet" href="<%=path %>/resources/css/button.css" type="text/css" media="screen">
+<link href="<%=path %>/resources/css/button.css" rel="stylesheet" type="text/css" media="screen">
+
 <script type="text/javascript" src="<%=path %>/resources/homecss/js/jquery-1.11.1.min.js"></script>
 <script src="<%=path %>/resources/homecss/js/menu_jquery.js"></script>
 
-<script type="application/x-javascript"> 
-	addEventListener("load", function() { 
-		setTimeout(hideURLbar, 0); }, false); 
-	function hideURLbar(){ window.scrollTo(0,1);
-	} 
+<script type="text/javascript"> 
+$(document).ready(function(){
+	$.ajax({
+		   type: "POST",
+		   url:'<%=path %>/GetUserInfo.action',
+		   data: "web",
+		   success: function(data){
+			   if (data.success) {
+ 				  alert(data.msg); 
+				  
+				} else {
+	 			  alert(data.msg);
+				}
+		   } 
+		});
+	});
 </script>
 
 <script>
@@ -37,6 +50,8 @@ function noContent(){
 <!----------------------body----------------------->
 
 <body style="height:100%;">
+<%-- session id = <%= session.getId() %><br> --%>
+
 <div id="wrapper">
 <!----------------------header begin----------------------->
 

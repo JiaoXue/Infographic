@@ -46,5 +46,8 @@ public class baseController {
 		//{"success":true,"msg":"fdfdfd"}
 		
 	}
+	public void sendObject(HttpServletResponse response,Object object) {
+		HtmlUtil.writerJson(response, object);
+	}
 	
 }

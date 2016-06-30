@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="<%=path %>/resources/css/bootstrap.css"  type="text/css">
     <link href="<%=path %>/resources/homecss/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="<%=path %>/resources/homecss/css/sideBar.css" rel='stylesheet' type='text/css' />
-    <link href="<%=path %>/resources/homecss/css/style.css" rel='stylesheet' type='text/css' />
+	<link href="<%=path %>/resources/indexCss/style.css" rel='stylesheet' type='text/css' />
 
     <script type="text/javascript" src="<%=path %>/resources/js/jquery-1.7.1.min.js"></script>
 	<script type="application/x-javascript"> 
@@ -26,44 +26,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</script>
 
 <script src="<%=path %>/resources/homecss/js/menu_jquery.js"></script>
-    
-<!--     <script type="text/javascript">
-    $(function() {
-    	var Accordion = function(el, multiple) {
-    		this.el = el || {};
-    		this.multiple = multiple || false;
-
-    		// Variables privadas
-    		var links = this.el.find('.link');
-    		// Evento
-    		links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
-    	}
-
-    	Accordion.prototype.dropdown = function(e) {
-    		var $el = e.data.el;
-    			$this = $(this),
-    			$next = $this.next();
-
-    		$next.slideToggle();
-    		$this.parent().toggleClass('open');
-
-    		if (!e.data.multiple) {
-    			$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
-    		};
-    	}	
-
-    	var accordion = new Accordion($('#accordion'), false);
-    });
-    </script> -->
-
-
 </head>
 
-<body>
+
+
+<body style="height:100%;">
+<div id="wrapper">
+<!----------------------header begin----------------------->
+
 	<div class="header">	
-      <div class="container"> 
-  	     <div class="logo" style="padding: 10px;">
-			<h1>Infographics</h1>
+  	     <div class="logo" style="padding: 15px;">
+			<h1>Infographic</h1>
 		 </div>
 		 <div class="top_right">
 		   <ul style="color:black;">
@@ -84,7 +57,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			                     </fieldset>
 			                    <input type="submit" id="save" value="Save">
 			            	</fieldset>
-
 						   </form>
 				        </div>
 			      </div>
@@ -92,20 +64,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   </ul>
 	     </div>
 		 <div class="clearfix"></div>
-		</div>
 	</div>
-	
-	<div style="/* min-height:570px; */padding:30px;">
-	
-		<div style = "/* border:1px solid black; */margin:auto;width:80%;/* height:480px; */">
-			<table width="100%">
-				<tr style="padding:10psx 30px;border: 1px solid;">
-				  <th colspan="2" >
-				  	<div style="width:90%;margin:auto;padding:7px;"> 
-				  		URL: <input style = "width:90%;margin:auto;" type="url" name="url">
-				  	</div>
+<!----------------------body end----------------------->
+
+<!----------------------container begin----------------------->	
+	<div class="container">
+	<div style="padding:30px;">
+		
+		<div style = "margin:auto;width:90%;">
+			<div style="width:80%;margin:auto;padding:20px;"> 
+				  URL: <input style = "width:90%;margin:auto;" type="password" name="url">
+			</div>
+			<table width="100%" style="border-radius:25px;">
+<!-- 				<tr style="padding:10psx 30px;border:1px solid black;">
+				  <th colspan="2">
+				  	
 				  </th>
-				</tr>
+				</tr> -->
 				
 				<tr style="border: 1px solid;">
 				  <td width="25%" style="border: 1px solid;">
@@ -137,31 +112,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				  </td>
 				  <td height="440px" width="75%"></td>
 				</tr>
-				
-				<tr style="height:70px;border：0px;">
-					<td colspan="2" align="center" valign="middle">
-						<a href="" style="width:20%;" class="Mybutton button-action button-pill" onclick="">Save</a>
-					</td>
-				</tr>
 			</table>
-			
+			<div align="center" style = "margin:25px;" ><a href="" style="width:20%; " class="Mybutton button-action button-pill" onclick="">Save</a></div>
 		</div>
 
 	</div>
-
-
-
-
-	
-	<div class="grid_3">
-	  <div class="container">
-	  	 <ul id="footer-links">
-			<li><a href=" ">Support</a></li>
-			<li><a href=" ">About Us</a></li>
-			<li><a href=" ">FAQ</a></li>
-         </ul>
-         <p>Copyright &copy; 2016</p>
-	  </div>
 	</div>
+	<div id='push'></div>
+</div>
+<!----------------------container end----------------------->	
+
+<!----------------------footer begin----------------------->	
+
+	<div id = "footer" class="grid_2v footer" style ="border-top: solid 1px rgba(29, 43, 49, 0.34);">
+
+		    <div class="grid_3">
+		  <div>
+		  	 <ul id="footer-links">
+				<li><a href=" ">Support</a></li>
+				<li><a href=" ">About Us</a></li>
+				<li><a href=" ">FAQ</a></li>
+	         </ul>
+	         <p>Copyright &copy; 2016</p>
+		  </div>
+		</div>
+	</div>
+
+<!----------------------footer end----------------------->			
 </body>
-	</html>
+</html>

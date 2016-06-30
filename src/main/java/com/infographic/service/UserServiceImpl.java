@@ -16,11 +16,6 @@ public class UserServiceImpl implements IUserService{
 	@Autowired
 	IUserDAO userDAO;
 	
-//	@Override
-//	public List<Map<String, Object>> selectAllUsers() {
-//		return userDAO.selectAllUsers();
-//	}
-	
 	@Override
 	public List<Map<String, Object>> selectUser(int userId) {
 		
@@ -29,16 +24,6 @@ public class UserServiceImpl implements IUserService{
 		return myUserList;
 		
 	}
-	
-//	@Override
-//	public boolean createUser(UserModel user) {
-//		return userDAO.createUser(user);
-//	}
-//
-//	@Override
-//	public boolean updateUser(UserModel user) {
-//		return userDAO.updateUser(user);
-//	}
 
 	@Override
 	public List<Map<String, Object>> signin(String username, String password) {	
@@ -49,11 +34,7 @@ public class UserServiceImpl implements IUserService{
 	public int getUserId(String username) {
 		return userDAO.getUserId(username);
 	}
-
-//	@Override
-//	public boolean updateUserProfile(UserModel myUser) {
-//		return userDAO.updateUserProfile(myUser);
-//	}
+	
 
 
 }

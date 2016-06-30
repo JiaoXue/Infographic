@@ -14,6 +14,7 @@ public class UserModel{
 	private Date Create_date;
 	private Date Last_signin;
 	private Timestamp Last_change;
+	private String Photo_url;
 
 	public int getId() {
 		return Id;
@@ -85,6 +86,14 @@ public class UserModel{
 
 	public void setLast_change(Timestamp last_change) {
 		Last_change = last_change;
+	}
+
+	public String getPhoto_url() {
+		return Photo_url;
+	}
+
+	public void setPhoto_url(String photo_url) {
+		Photo_url = photo_url;
 	}
 
 
