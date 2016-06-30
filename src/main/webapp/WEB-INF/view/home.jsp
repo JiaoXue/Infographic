@@ -49,42 +49,12 @@ function noContent(){
 <!----------------------body----------------------->
 
 <body style="height:100%;">
-<%-- session id = <%= session.getId() %><br> --%>
 
 <div id="wrapper">
-<!----------------------header begin----------------------->
-
-	<div class="header">	
-  	     <div class="logo" style="padding: 15px;">
-			<h1>Infographic</h1>
-		 </div>
-		 <div class="top_right">
-		   <ul style="color:black;">
-		    <li><img id="photo" src="<%=path %>/resources/images/head/<%= (String)session.getAttribute("usersid") %>.jpg" style="height:45px;border-radius:100px;" alt=""/></li>
-			<li><a href="">Sign Out</a></li>|
-			<li class="login" >
-				 <div id="loginContainer"><a href="#" id="loginButton"><span>Account</span></a>
-					  <div id="loginBox">                
-						  <form id="loginForm">
-			                <fieldset id="body">
-			                	<fieldset>
-			                          <label for="Username">Username</label>
-			                          <input type="text" name="Username" id="Username">
-			                    </fieldset>
-			                    <fieldset>
-			                            <label for="password">Password</label>
-			                            <input type="password" name="password" id="password">
-			                     </fieldset>
-			                    <input type="submit" id="save" value="Save">
-			            	</fieldset>
-						   </form>
-				        </div>
-			      </div>
-			  </li>
-		   </ul>
-	     </div>
-		 <div class="clearfix"></div>
-	</div>
+<!----------------------header begin----------------------->	
+	<jsp:include page="/WEB-INF/view/header.jsp">
+	   <jsp:param name="path" value="<%=path %>"/>
+	</jsp:include>
 <!----------------------body end----------------------->
 
 <!----------------------container begin----------------------->	
@@ -105,20 +75,9 @@ function noContent(){
 <!----------------------container end----------------------->	
 
 <!----------------------footer begin----------------------->	
-
-	<div id = "footer" class="grid_2v footer" style ="border-top: solid 1px rgba(29, 43, 49, 0.34);">
-
-		    <div class="grid_3">
-		  <div>
-		  	 <ul id="footer-links">
-				<li><a href=" ">Support</a></li>
-				<li><a href=" ">About Us</a></li>
-				<li><a href=" ">FAQ</a></li>
-	         </ul>
-	         <p>Copyright &copy; 2016</p>
-		  </div>
-		</div>
-	</div>
+	<jsp:include page="/WEB-INF/view/footer.jsp">
+	   <jsp:param name="path" value="<%=path %>"/>
+	</jsp:include>
 
 <!----------------------footer end----------------------->			
 </body>

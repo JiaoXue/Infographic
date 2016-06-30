@@ -96,34 +96,34 @@ public class UserController extends baseController{
 
 	}
 	
-	@RequestMapping(value = "/GetUserInfo")
-	public void GetUserInfo(HttpServletRequest request,
-			HttpServletResponse response) {
-		int usrId = 0;
-//		usrId = SessionUtils.getUser(request).getId();
-		HttpSession session = request.getSession();
-		String sessionId = session.getId();
-		String userId = (String)session.getAttribute("usersid");
-		
-		List<Map<String, Object>> user = userServiceImpl.selectUser(Integer.parseInt(userId));
-		String photo_url = user.get(0).get("photo_url").toString();
-		sendSuccessMessage(response, photo_url);
-		//		System.out.println(user);
-//		System.out.println(sessionId);
-//		System.out.println(session.getAttribute("usersid"));
-		
-//		sendSuccessMessage(response,userId);
-		
-//		Date createTime = new Date(session.getCreationTime());
-//		System.out.println(createTime);
-//		if (session.isNew()) {
-//			System.out.println("session创建成功，session的id是："+sessionId);
-//			}else {
-//			System.out.println("服务器已经存在session，session的id是："+sessionId);
-//			}
-
-		return;
-	}
+//	@RequestMapping(value = "/GetUserInfo")
+//	public void GetUserInfo(HttpServletRequest request,
+//			HttpServletResponse response) {
+//		int usrId = 0;
+////		usrId = SessionUtils.getUser(request).getId();
+//		HttpSession session = request.getSession();
+//		String sessionId = session.getId();
+//		String userId = (String)session.getAttribute("usersid");
+//		
+//		List<Map<String, Object>> user = userServiceImpl.selectUser(Integer.parseInt(userId));
+//		String photo_url = user.get(0).get("photo_url").toString();
+//		sendSuccessMessage(response, photo_url);
+//		//		System.out.println(user);
+////		System.out.println(sessionId);
+////		System.out.println(session.getAttribute("usersid"));
+//		
+////		sendSuccessMessage(response,userId);
+//		
+////		Date createTime = new Date(session.getCreationTime());
+////		System.out.println(createTime);
+////		if (session.isNew()) {
+////			System.out.println("session创建成功，session的id是："+sessionId);
+////			}else {
+////			System.out.println("服务器已经存在session，session的id是："+sessionId);
+////			}
+//
+//		return;
+//	}
 	
 }
 	
