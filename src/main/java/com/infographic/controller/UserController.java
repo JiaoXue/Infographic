@@ -105,6 +105,9 @@ public class UserController extends baseController{
 		String sessionId = session.getId();
 		System.out.println(sessionId);
 		System.out.println(session.getAttribute("usersid"));
+		
+		sendSuccessMessage(response,(String)session.getAttribute("usersid"));
+		
 //		Date createTime = new Date(session.getCreationTime());
 //		System.out.println(createTime);
 		if (session.isNew()) {
@@ -112,13 +115,7 @@ public class UserController extends baseController{
 			}else {
 			System.out.println("服务器已经存在session，session的id是："+sessionId);
 			}
-//		List<Map<String, Object>> userInfo = userServiceImpl.selectUser(usrId);
-//		Map<String, Object> result = new HashMap<String, Object>();
-//			result.put("SUCCESS", true);
-//			result.put("data", userInfo);
-//			System.out.println("Success");
-//			System.out.println(result);
-//			sendObject(response, result);
+
 		return;
 	}
 	
