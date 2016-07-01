@@ -5,11 +5,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <div class="header">	
   	     <div class="logo" style="padding: 15px;align:center;">
-			<h1 style="float:left;">Infographic|</h1><h5 style="float:right; ">Welcome <%= (String)session.getAttribute("usersname") %></h5>
+			<h1 style="float:left;">Infographic</h1>
 		 </div>
 		 <div class="top_right">
 		   <ul style="color:black;">
-		    <li><img src="<%=path %>/resources/images/head/<%= (String)session.getAttribute("usersid") %>.jpg" style="height:45px;border-radius:100px;" alt=""/></li>
+		    <li><div style="float:left;padding: 15px;"><h5 style="margin:0;">Welcome <%= (String)session.getAttribute("usersname") %></h5></div><img src="<%=path %>/resources/images/head/<%= (String)session.getAttribute("usersid") %>.jpg" style="height:45px;border-radius:100px;" alt=""/></li>
 			<li><a href="">Sign Out</a></li>|
 		    <li class="login" >
 				 <div id="loginContainer"><a href="#" id="loginButton"><span>Account</span></a>

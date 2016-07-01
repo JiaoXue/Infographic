@@ -49,6 +49,18 @@ body a{
 	margin:0px 10px;
 }
 
+.info_box{
+	border-radius:25px;
+	border: 1px solid rgba(92, 92, 92, 0.43);
+	width:80%;
+	margin:auto;
+}
+.button_size{
+	    width:140px;
+}
+
+
+
 .content {
     text-align: center;
     padding: 4%;
