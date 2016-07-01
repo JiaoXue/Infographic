@@ -4,8 +4,8 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <div class="header">	
-  	     <div class="logo" style="padding: 15px;">
-			<h1>Infographic</h1>
+  	     <div class="logo" style="padding: 15px;align:center;">
+			<h1 style="float:left;">Infographic|</h1><h5 style="float:right; ">Welcome <%= (String)session.getAttribute("usersname") %></h5>
 		 </div>
 		 <div class="top_right">
 		   <ul style="color:black;">

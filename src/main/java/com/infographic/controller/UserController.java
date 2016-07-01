@@ -80,7 +80,7 @@ public class UserController extends baseController{
 				HttpSession session = request.getSession();
 				String sessionId = session.getId();
 				session.setAttribute("usersid", userid);
-				
+				session.setAttribute("usersname", loginname);
 				System.out.println(session.getAttribute("usersid"));
 
 			} else {
