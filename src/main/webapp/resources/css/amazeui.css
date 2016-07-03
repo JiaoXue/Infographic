@@ -1900,7 +1900,7 @@ input[type="search"] {
 }
 input[type="radio"],
 input[type="checkbox"] {
-  margin: 4px 0 0;
+  margin: 15px 0 0;
   margin-top: 1px \9;
   /* IE8-9 */
   line-height: normal;
@@ -8996,9 +8996,9 @@ TODO:
   bottom: 0;
   left: 0;
   z-index: 1091;
-  width: 200px;
+  width: 230px;
   max-width: 100%;
-  background: #333;
+  background: rgba(247,244,239,1);
   overflow-y: auto;
   /* scrollable */
   -webkit-overflow-scrolling: touch;
@@ -9010,6 +9010,13 @@ TODO:
   -webkit-transform: translateX(-100%);
       -ms-transform: translateX(-100%);
           transform: translateX(-100%);
+}
+.margin_icheck{
+	margin:5px;
+}
+.margin_icheckimg{
+	margin:5px;
+	height:30px;
 }
 .am-offcanvas-bar:after {
   content: "";
@@ -9040,10 +9047,10 @@ TODO:
 }
 .am-offcanvas-content {
   padding: 15px;
-  color: #999;
+  color: black;
 }
 .am-offcanvas-content a {
-  color: #ccc;
+  color: black;
 }
 /* ==========================================================================
    Component: Popover Plugin

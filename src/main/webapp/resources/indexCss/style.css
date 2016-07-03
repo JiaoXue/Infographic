@@ -58,7 +58,24 @@ body a{
 .button_size{
 	    width:140px;
 }
-
+.button_1{
+	    width:100%;
+	    padding: 0 20px !important; 
+	    font-size:15px !important;
+	    TEXT-ALIGN: center !important;
+	    margin:10px 0px !important;
+}
+.img_gallery{
+	max-height:200px;
+	/* max-width:200px; */
+	margin:5px;
+}
+.hide{
+	visibility:hide;
+}
+.show{
+	display: block;
+}
 
 
 .content {
