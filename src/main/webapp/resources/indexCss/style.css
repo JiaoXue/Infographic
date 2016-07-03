@@ -50,16 +50,24 @@ body a{
 }
 
 .info_box{
-	border-radius:25px;
-	border: 1px solid rgba(92, 92, 92, 0.43);
-	width:80%;
-	margin:auto;
+margin: 15px 0px 20px;
+/* 	width:80%;
+	margin:auto; */
+/* 	background-repeat: no-repeat;
+	background-image:url("/Infographic_Master/resources/images/gallery/2.jpg");
+	min-height:500px; */
 }
 .button_size{
 	    width:140px;
 }
+
+.margin_icheckimg1{
+	margin: 5px;
+	height: 70px;
+}
+
 .button_1{
-	    width:100%;
+	    width:80%;
 	    padding: 0 20px !important; 
 	    font-size:15px !important;
 	    TEXT-ALIGN: center !important;

@@ -38,6 +38,12 @@ $(document).ready(function(){
 	});
 </script> --%>
 
+<script>
+function noContent(){
+	alert("Under Construction,Coming Soon");
+}
+</script>
+
 </head>
 
 <!----------------------body----------------------->
@@ -53,16 +59,16 @@ $(document).ready(function(){
 
 <!----------------------container begin----------------------->	
 	<div class="container">
-		<div class = "welcome" align="center">
+		<%-- <div class = "welcome" align="center">
 			Welcome to Infographic
 		</div>
 		<div style="margin: 50px auto;" align="center">
-			<a href="<%=path %>/create_template.do" style="margin:15px 15px;" class=" button button-action button-pill button-large">Create a Template</a>
+			<a href="#" style="margin:15px 15px;" class=" button button-action button-pill button-large" onclick="noContent();">Create a Template</a>
 			<a href="<%=path %>/info_index.do" class=" button button-action button-pill button-large">Create an Infographic</a>
 		</div>
 		<div style="width:100%; margin:auto;" align="center">		
 			<img src="<%=path %>/resources/indexCss/back.jpg" alt=""/>
-		</div>
+		</div> --%>
 	</div>
 	<div id='push'></div>
 </div>

@@ -25,8 +25,15 @@ public class mappingController {
 	
 	@RequestMapping(value = "/football_1", method = RequestMethod.GET)
 	public String football_1(Model model) {	
-		return "football_1";
+		return "template/football_1";
 	}
+	
+	@RequestMapping(value = "/create_template", method = RequestMethod.GET)
+	public String create_template(Model model) {	
+		return "create_template";
+	}
+	
+	
 	
 	
 }
