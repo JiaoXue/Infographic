@@ -41,10 +41,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=path %>/resources/colorpicker/js/bootstrap-colorpicker.js"></script>
 <!-- colorpicker -->
 
-<script type="text/javascript">
-
-</script>
-
+<!-- jquery Ruler -->
+<script src="<%=path %>/resources/js/jquery-ruler.js" type="text/javascript" ></script>
+<link href="<%=path %>/resources/css/jquery-ruler.css" rel="stylesheet" type="text/css" media="screen">
+<!-- jquery Ruler -->
 
 <script>
 
@@ -137,6 +137,7 @@ function addImage(){
 		if(i1.checked){	
 			var div = document.createElement("div");
 			div.setAttribute("class","a");
+/* 			image.setAttribute("z-index", "100"); */
 			div.setAttribute("id","m1");
 			var image = document.createElement("img");
 			image.src="<%=path %>/resources/images/gallery/m1.jpg";
@@ -157,6 +158,16 @@ function addImage(){
 
 </script> 
 
+<script>
+ $(function() {
+    $('.infographic_border').ruler();
+    var x = $("#infographic").width();
+    $(".ef-ruler").width(x);
+    $(".ef-ruler").height(x);
+});
+ 
+ 
+</script>
 
 </head>
 
@@ -204,10 +215,12 @@ function addImage(){
 							    		alert("Max width equals to 700 px.")
 							    	}
 							    	var x = document.getElementById("width").value;
+							    	$(".ef-ruler").width(x);
 							    	$("#infographic").width(x);
 							    }
 							    function info_height(){
 							    	var x = document.getElementById("height").value;
+							    	$(".ef-ruler").height(x);
 							    	$("#infographic").height(x);
 							    }
 							</script>
