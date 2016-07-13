@@ -69,9 +69,9 @@ $(document).ready(function(){
 <!----------------------container end----------------------->	
 
 <!----------------------footer begin----------------------->	
-	<jsp:include page="/WEB-INF/view/footer.jsp">
+<%-- 	<jsp:include page="/WEB-INF/view/footer.jsp">
 	   <jsp:param name="path" value="<%=path %>"/>
-	</jsp:include>
+	</jsp:include> --%>
 
 <!----------------------footer end----------------------->			
 </body>

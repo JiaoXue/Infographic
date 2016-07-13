@@ -39,6 +39,7 @@
     
 	<bean id="IUserService" class="com.infographic.service.UserServiceImpl"></bean>
 	<bean id="IUserDAO" class="com.infographic.dao.UserDAOImpl"></bean>
-
+	
+	<bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
 </beans> 

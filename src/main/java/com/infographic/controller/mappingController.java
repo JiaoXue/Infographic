@@ -22,6 +22,10 @@ public class mappingController {
 	public String info_index(Model model) {	
 		return "info_index";
 	}
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test(Model model) {	
+		return "1234";
+	}
 	
 	@RequestMapping(value = "/football_1", method = RequestMethod.GET)
 	public String football_1(Model model) {	
@@ -31,6 +35,17 @@ public class mappingController {
 	@RequestMapping(value = "/create_template", method = RequestMethod.GET)
 	public String create_template(Model model) {	
 		return "create_template";
+	}
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/lay", method = RequestMethod.GET)
+	public String lay(Model model) {	
+		return "c_template/index";
 	}
 	
 	

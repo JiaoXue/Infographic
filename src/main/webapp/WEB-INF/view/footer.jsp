@@ -4,9 +4,9 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-	<div id = "footer" class="grid_2v footer" style ="border-top: solid 1px rgba(29, 43, 49, 0.34);">
+	<div id = "footer" class="grid_2v footer" style ="border-top: solid 1px rgba(29, 43, 49, 0.34);z-index:100;position:fixed;">
 
-		    <div class="grid_3">
+		    <div class="grid_3" style="line-height:0.3;">
 		  <div>
 		  	 <ul id="footer-links">
 				<li><a href=" ">Support</a></li>

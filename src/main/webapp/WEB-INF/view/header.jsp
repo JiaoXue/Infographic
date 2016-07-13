@@ -3,11 +3,11 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<div class="header">	
+<div class="header" style="z-index:100;">	
   	     <div class="logo" style="padding: 15px;align:center;">
-			<h1 style="float:left;">Infographic</h1>
+			<a href="<%=path %>/home.do>" ><h1 style="float:left;">Infographic</h1></a>
 		 </div>
-		 <div class="top_right">
+		 <div class="top_right" >
 		   <ul style="color:black;">
 		    <li><div style="float:left;padding: 15px;"><h5 style="margin:0;">Welcome <%= (String)session.getAttribute("usersname") %></h5></div><img src="<%=path %>/resources/images/head/<%= (String)session.getAttribute("usersid") %>.jpg" style="height:45px;border-radius:100px;" alt=""/></li>
 			<li><a href="">Sign Out</a></li>|

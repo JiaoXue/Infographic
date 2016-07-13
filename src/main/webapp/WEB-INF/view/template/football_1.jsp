@@ -322,10 +322,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!----------------------footer begin----------------------->	
 
-	<jsp:include page="/WEB-INF/view/footer.jsp">
+<%-- 	<jsp:include page="/WEB-INF/view/footer.jsp">
 	   <jsp:param name="path" value="<%=path %>"/>
 	</jsp:include>
-
+ --%>
 <!----------------------footer end----------------------->			
 </body>
 </html>
