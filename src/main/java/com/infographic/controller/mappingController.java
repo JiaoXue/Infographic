@@ -24,7 +24,7 @@ public class mappingController {
 	}
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test(Model model) {	
-		return "1234";
+		return "5678";
 	}
 	
 	@RequestMapping(value = "/football_1", method = RequestMethod.GET)

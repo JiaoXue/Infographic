@@ -114,9 +114,9 @@
 
                 self._fixRulerPosition();
             });
-            this.element.mousemove(function (event) {
-                self._fixArrowsPosition(event.clientX, event.clientY);
-            });
+//            this.element.mousemove(function (event) {
+//                self._fixArrowsPosition(event.clientX, event.clientY);
+//            });
             $(window).resize(function () {
                 self._fixRulerSize();
                 self._updateRulerTicks();

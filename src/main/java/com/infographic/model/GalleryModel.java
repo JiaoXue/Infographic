@@ -8,7 +8,6 @@ public class GalleryModel {
 	private int Id;
 	private String Name;
 	private int Author_id;
-	private String Url;
 	private Date Create_date;
 	
 	public int getId() {
@@ -28,12 +27,6 @@ public class GalleryModel {
 	}
 	public void setAuthor_id(int author_id) {
 		Author_id = author_id;
-	}
-	public String getUrl() {
-		return Url;
-	}
-	public void setUrl(String url) {
-		Url = url;
 	}
 	public Date getCreate_date() {
 		return Create_date;

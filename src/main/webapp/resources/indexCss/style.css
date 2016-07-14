@@ -42,7 +42,7 @@ body a{
 						clear:both;
 
 					}
-					
+										
 .sidebar{
 	position: fixed;
 	width: 250px;
@@ -88,7 +88,7 @@ body a{
 	width:500px;height:500px; 
 	margin:20px auto;
 	max-width: 700px;
-	background-color:rgba(110, 189, 255, 0.16);
+	background-color:rgba(10, 17, 23, 0.07);
 	overflow:hidden;
 }		
 					

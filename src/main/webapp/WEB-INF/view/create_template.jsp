@@ -46,8 +46,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="<%=path %>/resources/css/jquery-ruler.css" rel="stylesheet" type="text/css" media="screen">
 <!-- jquery Ruler -->
 
+<!-- popup & modal -->
 <script>
-
 $(function() {
 	
 	$('.ui.accordion').accordion();
@@ -69,8 +69,9 @@ function Geometries(){
 	  .modal('show')
 	;
 }
-
- 
+</script>
+<!--------------- add header --------------->
+<script> 
 function addheader(){
 	var xy = 1;
 	var image = document.createElement("h1");     //创建一个img元素 
@@ -91,7 +92,9 @@ function addheader(){
     
     $(".b").draggable();   
 }
-
+</script>
+<!--------------- add layer --------------->
+<script>
 function layer(){
 	var xy = 1;
 	var image = document.createElement("div");     //创建一个img元素 
@@ -99,8 +102,7 @@ function layer(){
     image.setAttribute("z-index", "1");
     image.setAttribute("class", "d");
     var myDiv = document.getElementById('infographic'); //获得dom对象  
-    myDiv.appendChild(image); //为dom添加子元素img  
-    
+    myDiv.appendChild(image); //为dom添加子元素img     
     var x=document.getElementById('itemtable').insertRow(0)
     var y=x.insertCell(0)
     y.innerHTML="Layer" + xy + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); return false;'></i>"
@@ -108,8 +110,9 @@ function layer(){
     
     $(".d").draggable();   
 }
-
-
+</script>
+<!---------------add text --------------->
+<script>
 function addText(){
 	var xy = 1;
 	var image = document.createElement("h1");     //创建一个img元素 
@@ -130,47 +133,49 @@ function addText(){
     
     $(".c").draggable();   
 }
-
+</script>
+<!--------------- add image --------------->
+<script>
 function addImage(){
 		/* var addImage=1; */
-		
-		if(i1.checked){	
+		var items = document.getElementsByName("imagecheck");
+		var arrays = new Array();   //创建一个数组对象
+		for(i=0; i < items.length; i++){  //循环这组数据
+			   if(items[i].checked){      //判断是否选中
+				   arrays.push(items[i].id);  //把符合条件的 添加到数组中. push()是javascript数组中的方法.
+			   }
+		}
+		for(i=0; i < arrays.length; i++){
+			var j = arrays[i]-1;
 			var div = document.createElement("div");
 			div.setAttribute("class","a");
-/* 			image.setAttribute("z-index", "100"); */
-			div.setAttribute("id","m1");
+			div.setAttribute("id", j+"image");
 			var image = document.createElement("img");
-			image.src="<%=path %>/resources/images/gallery/m1.jpg";
+			image.src="<%=path %>/resources/images/gallery/"+ items[j].value;
 			var myDiv = document.getElementById('infographic');
 			myDiv.appendChild(div); 
-	 		div.appendChild(image); 
-
-		    var x=document.getElementById('itemtable').insertRow(0)
+	 		div.appendChild(image);
+	 		
+	 		var x=document.getElementById('itemtable').insertRow(0)
 		    var y=x.insertCell(0)
-		    y.innerHTML="Image<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#m1&quot;).remove();  return false; '></i>"
-		   /*  addImage= addImage+1; */
-		   
+		    y.innerHTML= items[j].value + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#"+ j +"image&quot;).remove();  return false; '></i>"
 		}
-		
 		$(".a").draggable();
-		$(".a").resizable(); 
+		$(".a").resizable();
 }
 
 </script> 
-
+<!--------------- add ruler --------------->
 <script>
  $(function() {
     $('.infographic_border').ruler();
     var x = $("#infographic").width();
+    var y = $("#infographic").height();
     $(".ef-ruler").width(x);
-    $(".ef-ruler").height(x);
+    $(".ef-ruler").height(y);
 });
- 
- 
 </script>
-
 </head>
-
 <!----------------------body----------------------->
 
 <body style="height:100%;">
@@ -184,7 +189,7 @@ function addImage(){
 
 
 <!----------------------container begin----------------------->	
-	<div class="container">
+	<div class="container" style="width:780px;">
 
 		<!----------------------sideBar Begin----------------------->	
 		<div class="sidebar">
@@ -219,6 +224,10 @@ function addImage(){
 							    	$("#infographic").width(x);
 							    }
 							    function info_height(){
+							    	if(document.getElementById("height").value > 540){ 
+							    		document.getElementById("height").value = 540;
+							    		alert("Max width equals to 540 px.")
+							    	}
 							    	var x = document.getElementById("height").value;
 							    	$(".ef-ruler").height(x);
 							    	$("#infographic").height(x);
@@ -236,18 +245,41 @@ function addImage(){
 								    	<button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="gallery();">Choose from Gallery</button>
 								    		<div class="ui modal" style="height:400px;">
 											  	<div class="header" style="text-align:center;">Choose image from Gallery</div>
-												<div class="image">
-													<input id="i1"class="padding10"type="checkbox"> <img class="imageboard" src="<%=path %>/resources/images/gallery/m1.jpg">
-													<input id="i2"class="padding10"type="checkbox"> <img class="imageboard" src="<%=path %>/resources/images/gallery/m2.jpg">
-													<input id="i3"class="padding10"type="checkbox"> <img class="imageboard" src="<%=path %>/resources/images/gallery/m3.jpg">
-												    <input id="i4"class="padding10"type="checkbox"> <img class="imageboard" src="<%=path %>/resources/images/gallery/m4.jpg">
-													<input id="i5"class="padding10"type="checkbox"> <img class="imageboard" src="<%=path %>/resources/images/gallery/m5.jpg">
-													<input id="i6"class="padding10"type="checkbox"> <img class="imageboard" src="<%=path %>/resources/images/gallery/m6.jpg">
-													<input id="i7"class="padding10"type="checkbox"> <img class="imageboard" src="<%=path %>/resources/images/gallery/m7.jpg">
-													<input id="i8"class="padding10"type="checkbox"> <img class="imageboard" src="<%=path %>/resources/images/gallery/m8.jpg">
-													<input id="i9"class="padding10"type="checkbox"> <img class="imageboard" src="<%=path %>/resources/images/gallery/m9.jpg">
-													<input id="i10"class="padding10"type="checkbox"> <img class="imageboard" src="<%=path %>/resources/images/gallery/m10.jpg">
-												
+												<div id="imagebox" class="image">
+														<script>
+															$(function(){
+																$.ajax({
+															  		   type: "POST",
+															  		   url:'<%=path %>/getgallery.action',
+															  		   data: "port=web",
+															  		   success: function(data){
+															  			   if (data.SUCCESS) {		   
+															  				   
+															  				   var length = data.data.length;
+															  				   
+															  				   for(var i = 0; i < length; i++){
+															  					 var myDiv = document.getElementById('imagebox');
+															  					 var input = document.createElement("input");
+															  					 input.id = data.data[i].id;
+															  					 input.setAttribute("type","checkbox");
+															  					 input.setAttribute("name","imagecheck");
+															  					 input.setAttribute("value",data.data[i].name);
+															  					 input.setAttribute("class","padding10");
+															  					 myDiv.appendChild(input); 
+															  					 
+															  					 var image = document.createElement("img");
+															  					 image.src="<%=path %>/resources/images/gallery/"+data.data[i].name;
+															  					 image.setAttribute("class","imageboard");
+															  					 myDiv.appendChild(image); 
+															  				   } 
+															  				   
+															 				} else {
+															 					alert("There is no image in the gallery.");
+															 				}
+															  		   } 
+															  		});
+															});
+													   </script>
 												</div>
 												<div style="width:20%;margin:auto;"><button class="ui teal basic button" id = "add" onclick="addImage();">add</button></div>
 											</div>
