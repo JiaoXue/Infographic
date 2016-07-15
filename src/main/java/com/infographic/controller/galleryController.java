@@ -72,4 +72,28 @@ public class galleryController extends baseController{
 		return;
 	}
 	
+	@RequestMapping(value = "/searchgallery")
+	public void searchgallery(HttpServletRequest request,HttpServletResponse response){
+		
+		String searching = request.getParameter("search");
+		try{
+			List<Map<String, Object>> galleryList = galleryServiceImpl.searchgallery(searching);
+			
+			Map<String, Object> result = new HashMap<String, Object>();
+			if (galleryList != null) {
+				result.put("data", galleryList);
+				result.put("SUCCESS", true);
+				sendObject(response, result);
+
+			} else {
+				System.out.println("Sorry, we don't have Related Image in our gallery.");
+				sendFailureMessage(response, "Sorry, we don't have Related Image in our gallery.");
+			}
+		}catch (Exception e) {
+			System.out.println("Fail");
+		}
+		
+		return;
+	}
+	
 }

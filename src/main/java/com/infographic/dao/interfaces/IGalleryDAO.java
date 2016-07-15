@@ -8,4 +8,5 @@ import com.infographic.model.GalleryModel;
 
 public interface IGalleryDAO {
 	List<Map<String, Object>> getGalleryList();
+	List<Map<String, Object>> searchgallery(String searching);
 }

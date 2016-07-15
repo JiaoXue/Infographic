@@ -21,4 +21,12 @@ public class GalleryServiceImpl implements IGalleryService{
 		
 		return galleryList;
 	}
+	
+	@Override
+	public List<Map<String, Object>> searchgallery(String searching){
+		List<Map<String, Object>> galleryList = galleryDAO.searchgallery(searching);
+		
+		return galleryList;
+	}
+	
 }

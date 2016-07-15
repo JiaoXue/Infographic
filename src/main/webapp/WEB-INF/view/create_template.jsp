@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="<%=path %>/resources/css/jquery-ruler.css" rel="stylesheet" type="text/css" media="screen">
 <!-- jquery Ruler -->
 
-<!-- popup & modal -->
+<!--------------- popup & modal ------------>
 <script>
 $(function() {
 	
@@ -93,7 +93,7 @@ function addheader(){
     $(".b").draggable();   
 }
 </script>
-<!--------------- add layer --------------->
+<!--------------- add layer ---------------->
 <script>
 function layer(){
 	var xy = 1;
@@ -111,7 +111,7 @@ function layer(){
     $(".d").draggable();   
 }
 </script>
-<!---------------add text --------------->
+<!---------------add text ------------------>
 <script>
 function addText(){
 	var xy = 1;
@@ -134,10 +134,9 @@ function addText(){
     $(".c").draggable();   
 }
 </script>
-<!--------------- add image --------------->
+<!--------------- add image ---------------->
 <script>
 function addImage(){
-		/* var addImage=1; */
 		var items = document.getElementsByName("imagecheck");
 		var arrays = new Array();   //创建一个数组对象
 		for(i=0; i < items.length; i++){  //循环这组数据
@@ -145,9 +144,11 @@ function addImage(){
 				   arrays.push(items[i].id);  //把符合条件的 添加到数组中. push()是javascript数组中的方法.
 			   }
 		}
+		
 		for(i=0; i < arrays.length; i++){
+			
 			var j = arrays[i]-1;
-			var div = document.createElement("div");
+		    var div = document.createElement("div");
 			div.setAttribute("class","a");
 			div.setAttribute("id", j+"image");
 			var image = document.createElement("img");
@@ -156,16 +157,17 @@ function addImage(){
 			myDiv.appendChild(div); 
 	 		div.appendChild(image);
 	 		
-	 		var x=document.getElementById('itemtable').insertRow(0)
+ 	 		var x=document.getElementById('itemtable').insertRow(0)
 		    var y=x.insertCell(0)
-		    y.innerHTML= items[j].value + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#"+ j +"image&quot;).remove();  return false; '></i>"
+		    y.innerHTML= items[j].value + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#"+ j +"image&quot;).remove();  return false; '></i>" 
 		}
 		$(".a").draggable();
-		$(".a").resizable();
+		$(".a").resizable(); 
+		$(".ui.modal").modal('hide');
 }
 
 </script> 
-<!--------------- add ruler --------------->
+<!--------------- add ruler ---------------->
 <script>
  $(function() {
     $('.infographic_border').ruler();
@@ -175,8 +177,78 @@ function addImage(){
     $(".ef-ruler").height(y);
 });
 </script>
+<!--------------- search image ------------->
+<script>
+function search(){
+	$("#imagebox img").hide();
+	$("#imagebox input").hide();
+	$.ajax({
+  		   type: "POST",
+  		   url:'<%=path %>/searchgallery.action',
+  		   data: "port=web&search="+$("#search_word").val(),
+  		   success: function(data){
+  			   if (data.SUCCESS) {		   
+
+  				   var length = data.data.length;
+  				   for(var i = 0; i < length; i++){
+  					 var myDiv = document.getElementById('imagebox');
+  					 var input = document.createElement("input");
+  					 	input.id = data.data[i].id;
+	  					input.setAttribute("type","checkbox");
+	  					input.setAttribute("name","imagecheck");
+	  				    input.setAttribute("value",data.data[i].name);
+	  				    input.setAttribute("class","padding10");
+  					 	myDiv.appendChild(input); 
+  					 
+  					 var image = document.createElement("img");
+  					 image.src="<%=path %>/resources/images/gallery/"+data.data[i].name;
+  					 image.setAttribute("class","imageboard");
+  					 myDiv.appendChild(image); 
+  				   } 
+  				   
+ 				} else {
+ 					alert("There is no image in the gallery.");
+ 				}
+  		   } 
+  		});
+}
+</script>
+<!--------------- get gallery -------------->
+<script>
+$(function(){
+	$.ajax({
+		type: "POST",
+		url:'<%=path %>/getgallery.action',
+	    data: "port=web",
+	    success: function(data){
+	    if (data.SUCCESS) {		   
+																  				   
+		var length = data.data.length;
+																  				   
+		for(var i = 0; i < length; i++){
+			var myDiv = document.getElementById('imagebox');
+			var input = document.createElement("input");
+			input.id = data.data[i].id;	
+			input.setAttribute("type","checkbox");
+			input.setAttribute("name","imagecheck");
+		    input.setAttribute("value",data.data[i].name);
+		    input.setAttribute("class","padding10");  
+		    myDiv.appendChild(input); 
+																	  					 
+			var image = document.createElement("img");
+			image.src="<%=path %>/resources/images/gallery/"+data.data[i].name;
+			image.setAttribute("class","imageboard");
+			myDiv.appendChild(image); 
+		    } 
+		} else {
+				alert("There is no image in the gallery.");
+			}
+	    } 
+	});
+});
+</script>
 </head>
-<!----------------------body----------------------->
+<!---------------- body -------------------->
 
 <body style="height:100%;">
 
@@ -243,65 +315,19 @@ function addImage(){
 								    <div class="accordion">
 								    	
 								    	<button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="gallery();">Choose from Gallery</button>
-								    		<div class="ui modal" style="height:400px;">
-											  	<div class="header" style="text-align:center;">Choose image from Gallery</div>
-												<div id="imagebox" class="image">
-														<script>
-															$(function(){
-																$.ajax({
-															  		   type: "POST",
-															  		   url:'<%=path %>/getgallery.action',
-															  		   data: "port=web",
-															  		   success: function(data){
-															  			   if (data.SUCCESS) {		   
-															  				   
-															  				   var length = data.data.length;
-															  				   
-															  				   for(var i = 0; i < length; i++){
-															  					 var myDiv = document.getElementById('imagebox');
-															  					 var input = document.createElement("input");
-															  					 input.id = data.data[i].id;
-															  					 input.setAttribute("type","checkbox");
-															  					 input.setAttribute("name","imagecheck");
-															  					 input.setAttribute("value",data.data[i].name);
-															  					 input.setAttribute("class","padding10");
-															  					 myDiv.appendChild(input); 
-															  					 
-															  					 var image = document.createElement("img");
-															  					 image.src="<%=path %>/resources/images/gallery/"+data.data[i].name;
-															  					 image.setAttribute("class","imageboard");
-															  					 myDiv.appendChild(image); 
-															  				   } 
-															  				   
-															 				} else {
-															 					alert("There is no image in the gallery.");
-															 				}
-															  		   } 
-															  		});
-															});
-													   </script>
+								    		<div id = "big_div" class="ui modal" style="height:600px;">
+											  	<div class="header" style="text-align:center;">
+											  	    <h3>Choose image from Gallery</h3>
+												  	<input id = search_word>
+													<button onclick="search();" style="height:34px;" class="ui teal basic button">search</button>
+											  	</div>
+												<div id="imagebox" class="image" style="margin:20px">	
 												</div>
-												<div style="width:20%;margin:auto;"><button class="ui teal basic button" id = "add" onclick="addImage();">add</button></div>
+												<div style="width:20%;margin:0px auto 30px;"><button class="ui teal basic button" id = "add" onclick="addImage();">add</button></div>
 											</div>
-								    	
-						    	
 								    	<button class="ui teal basic button" style="margin-top: 10px;width:100%;">Upload Image</button>
 								    	<button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="Geometries();">Add Geometries</button>
 								    	<button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="layer();">Add layer</button>
-								    		<!-- <div class="ui modal" id = "geo" style="height:400px;">
-											  	<div class="header" style="text-align:center;">Add Geometries</div>
-												<div class="image">
-													
-													
-												
-												</div>
-												<div style="width:20%;margin:auto;"><button class="ui teal basic button" id = "add" onclick="add();">add</button></div>
-											</div> -->
-								    	
-										<!-- <div class="title"><i class="dropdown icon"></i> Level 2A-A </div>
-								        <div class="content">Level 2A-A Contents </div>
-								        <div class="title"><i class="dropdown icon"></i> Level 2A-B </div>
-								        <div class="content">Level 2A-B Contents </div> -->
 								    </div>
 								</div>
 						    </div>
