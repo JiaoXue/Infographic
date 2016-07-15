@@ -60,7 +60,7 @@ $(function() {
  });
 
 function gallery(){
-	$('.ui.modal')
+	$('#big_div')
 	  .modal('show')
 	;
 }
@@ -150,9 +150,13 @@ function addImage(){
 			var j = arrays[i]-1;
 		    var div = document.createElement("div");
 			div.setAttribute("class","a");
-			div.setAttribute("id", j+"image");
+			div.setAttribute("id", arrays[i]+"image");
+			div.setAttribute("name", j);
 			var image = document.createElement("img");
 			image.src="<%=path %>/resources/images/gallery/"+ items[j].value;
+			image.setAttribute("id",items[j].value);
+			image.setAttribute("name",items[j].id);
+			image.setAttribute("ondblclick","change(this.name);");
 			var myDiv = document.getElementById('infographic');
 			myDiv.appendChild(div); 
 	 		div.appendChild(image);
@@ -247,6 +251,109 @@ $(function(){
 	});
 });
 </script>
+<!--------------- change image box --------->
+<script>
+	function change(id){
+		$("#changeModal")
+		  .modal('show')
+		;
+		$("#choose").attr("value",id); 
+	}
+</script>
+<script>
+	function changeImage(value){
+ 			var items = document.getElementsByName("icheck");
+			  for(i=0; i < items.length; i++){  //循环这组数据
+				   if(items[i].checked){      //判断是否选中
+					   break;  //把符合条件的 添加到数组中. push()是javascript数组中的方法.
+				   }
+			}
+ 		    $("img[name='"+value+"']").attr("src","<%=path %>/resources/images/gallery/"+ items[i].value);
+			$("img[name='"+value+"']").attr("id",items[i].value);
+			$("img[name='"+value+"']").attr("name",items[i].id);
+		    $("div[name='"+value+"']").attr("id",items[i].id+"image"); 
+		    $("div[name='"+value+"']").attr("name",items[i].id); 
+			var x=document.getElementById('itemtable').rows[0]
+			var y=x.cells[0]
+			y.innerHTML = items[i].value + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#"+ i +"image&quot;).remove();  return false; '></i>" 
+		    /* var y=x.insertCell(0)
+		    y.innerHTML= items[j].value + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#"+ j +"image&quot;).remove();  return false; '></i>" 
+			 */
+			$(".ui.modal").modal('hide'); 
+	}	
+</script>
+<!--------------- get change image modal --->
+<script>
+	$(function(){
+		$.ajax({
+			type: "POST",
+			url:'<%=path %>/getgallery.action',
+		    data: "port=web",
+		    success: function(data){
+		    if (data.SUCCESS) {		   
+																	  				   
+			var length = data.data.length;
+																	  				   
+			for(var i = 0; i < length; i++){
+				var myDiv = document.getElementById('change_box');
+				var input = document.createElement("input");
+				input.id = data.data[i].id;	
+				input.setAttribute("type","radio");
+				input.setAttribute("name","icheck");
+			    input.setAttribute("value",data.data[i].name);
+			    input.setAttribute("class","padding10");  
+			    myDiv.appendChild(input); 
+																		  					 
+				var image = document.createElement("img");
+				image.src="<%=path %>/resources/images/gallery/"+data.data[i].name;
+				image.setAttribute("class","imageboard");
+				myDiv.appendChild(image); 
+			    } 
+			} else {
+					alert("There is no image in the gallery.");
+				}
+		    } 
+		});
+	});
+</script>
+<!--------------- change box search image -->
+<script>
+function search_1(){
+	$("#change_box img").hide();
+	$("#change_box input").hide();
+	$.ajax({
+  		   type: "POST",
+  		   url:'<%=path %>/searchgallery.action',
+  		   data: "port=web&search="+$("#search_word_1").val(),
+  		   success: function(data){
+  			   if (data.SUCCESS) {		   
+
+  				   var length = data.data.length;
+  				   for(var i = 0; i < length; i++){
+  					 var myDiv = document.getElementById('change_box');
+  					 var input = document.createElement("input");
+  					 	input.id = data.data[i].id;
+	  					input.setAttribute("type","radio");
+	  					input.setAttribute("name","icheck");
+	  				    input.setAttribute("value",data.data[i].name);
+	  				    input.setAttribute("class","padding10");
+  					 	myDiv.appendChild(input); 
+  					 
+  					 var image = document.createElement("img");
+  					 image.src="<%=path %>/resources/images/gallery/"+data.data[i].name;
+  					 image.setAttribute("class","imageboard");
+  					 myDiv.appendChild(image); 
+  				   } 
+  				   
+ 				} else {
+ 					alert("There is no image in the gallery.");
+ 				}
+  		   } 
+  		});
+}
+</script>
+
+
 </head>
 <!---------------- body -------------------->
 
@@ -315,6 +422,8 @@ $(function(){
 								    <div class="accordion">
 								    	
 								    	<button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="gallery();">Choose from Gallery</button>
+								    		
+								    		<!-- choose from gallery box -->		
 								    		<div id = "big_div" class="ui modal" style="height:600px;">
 											  	<div class="header" style="text-align:center;">
 											  	    <h3>Choose image from Gallery</h3>
@@ -324,6 +433,17 @@ $(function(){
 												<div id="imagebox" class="image" style="margin:20px">	
 												</div>
 												<div style="width:20%;margin:0px auto 30px;"><button class="ui teal basic button" id = "add" onclick="addImage();">add</button></div>
+											</div>
+								    	    <!-- change image from gallery box -->
+								    	    <div id = "changeModal" class="ui modal" style="height:600px;">
+											  	<div class="header" style="text-align:center;">
+											  	    <h3>Choose image from Gallery</h3>
+												  	<input id = search_word_1>
+													<button onclick="search_1();" style="height:34px;" class="ui teal basic button">search</button>
+											  	</div>
+												<div id="change_box" class="image" style="margin:20px">	
+												</div>
+												<div style="width:20%;margin:0px auto 30px;"><button class="ui teal basic button" id = "choose" value="#" onclick="changeImage(this.value);">choose</button></div>
 											</div>
 								    	<button class="ui teal basic button" style="margin-top: 10px;width:100%;">Upload Image</button>
 								    	<button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="Geometries();">Add Geometries</button>
