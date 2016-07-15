@@ -151,7 +151,7 @@ function addImage(){
 		    var div = document.createElement("div");
 			div.setAttribute("class","a");
 			div.setAttribute("id", arrays[i]+"image");
-			div.setAttribute("name", j);
+			div.setAttribute("name", arrays[i]);
 			var image = document.createElement("img");
 			image.src="<%=path %>/resources/images/gallery/"+ items[j].value;
 			image.setAttribute("id",items[j].value);
@@ -161,9 +161,9 @@ function addImage(){
 			myDiv.appendChild(div); 
 	 		div.appendChild(image);
 	 		
- 	 		var x=document.getElementById('itemtable').insertRow(0)
+	 		var x=document.getElementById('itemtable').insertRow(0)
 		    var y=x.insertCell(0)
-		    y.innerHTML= items[j].value + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#"+ j +"image&quot;).remove();  return false; '></i>" 
+		    y.innerHTML= items[j].value + "<i name = '"+ items[j].id +"'class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#"+ arrays[i] +"image&quot;).remove();  return false; ' ></i>" 
 		}
 		$(".a").draggable();
 		$(".a").resizable(); 
@@ -273,12 +273,19 @@ $(function(){
 			$("img[name='"+value+"']").attr("name",items[i].id);
 		    $("div[name='"+value+"']").attr("id",items[i].id+"image"); 
 		    $("div[name='"+value+"']").attr("name",items[i].id); 
-			var x=document.getElementById('itemtable').rows[0]
+			var j = i+1;
+		    var x = $("i[name='"+value+"']").closest("tr").remove();
+		    var x=document.getElementById('itemtable').insertRow(0)
+		    var y=x.insertCell(0)
+		    y.innerHTML= items[i].value + "<i name = '"+ items[i].id +"'class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#"+ j +"image&quot;).remove();  return false; ' ></i>" 
+		    /* /* var y = x.cells[0];
+		    y.innerHTML = "1234"; */ 
+		    /* var x=document.getElementById('itemtable').rows[0]
 			var y=x.cells[0]
 			y.innerHTML = items[i].value + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#"+ i +"image&quot;).remove();  return false; '></i>" 
 		    /* var y=x.insertCell(0)
 		    y.innerHTML= items[j].value + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#"+ j +"image&quot;).remove();  return false; '></i>" 
-			 */
+			 */ 
 			$(".ui.modal").modal('hide'); 
 	}	
 </script>
