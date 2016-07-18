@@ -5,7 +5,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<% int TextCount = 0; %>
 
 <html>
 <head>
@@ -46,6 +46,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="<%=path %>/resources/css/jquery-ruler.css" rel="stylesheet" type="text/css" media="screen">
 <!-- jquery Ruler -->
 
+<!-- add Text -->
+<script src="<%=path %>/resources/addText/dist/js/wangEditor.js" type="text/javascript" ></script>
+<link href="<%=path %>/resources/addText/dist/css/wangEditor.css" rel="stylesheet" type="text/css" media="screen">
+<!-- add Text -->
+
 <!--------------- popup & modal ------------>
 <script>
 $(function() {
@@ -70,29 +75,6 @@ function Geometries(){
 	;
 }
 </script>
-<!--------------- add header --------------->
-<script> 
-function addheader(){
-	var xy = 1;
-	var image = document.createElement("h1");     //创建一个img元素 
-    /* image.setAttribute("width", "10%"); */
-    image.setAttribute("z-index", "1");
-    image.setAttribute("class", "b");
-    image.setAttribute("contentEditable", "true");
-    
-    
-    image.innerHTML = "Insert Here"
-    var myDiv = document.getElementById('infographic'); //获得dom对象  
-    myDiv.appendChild(image); //为dom添加子元素img  
-    
-    var x=document.getElementById('itemtable').insertRow(0);
-    var y=x.insertCell(0)
-    y.innerHTML="Header" + xy + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); return false;'></i>"
-    xy= xy+1;
-    
-    $(".b").draggable();   
-}
-</script>
 <!--------------- add layer ---------------->
 <script>
 function layer(){
@@ -111,28 +93,32 @@ function layer(){
     $(".d").draggable();   
 }
 </script>
-<!---------------add text ------------------>
+<!--------------- add text ------------------>
 <script>
-function addText(){
-	var xy = 1;
-	var image = document.createElement("h1");     //创建一个img元素 
-    /* image.setAttribute("width", "10%"); */
-    image.setAttribute("z-index", "1");
-    image.setAttribute("class", "c");
-    image.setAttribute("contentEditable", "true");
-    
-    
-    image.innerHTML = "Insert Here"
-    var myDiv = document.getElementById('infographic'); //获得dom对象  
-    myDiv.appendChild(image); //为dom添加子元素img  
-    
-    var x=document.getElementById('itemtable').insertRow(0)
-    var y=x.insertCell(0)
-    y.innerHTML="Text" + xy + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); return false;'></i>"
-    xy= xy+1;
-    
-    $(".c").draggable();   
-}
+ 	var TextCount = 0;
+	function addText(){
+		$("#addTextModal")
+		  .modal('show')
+		;		
+	}
+	function addT(){
+
+	    var x = $("#editor").html();
+	    var div = document.createElement("div");
+	    div.innerHTML=x;
+	    div.setAttribute("class","text");
+	    div.setAttribute("id","Text" + ++TextCount);
+	    var myDiv = document.getElementById('infographic');
+	    myDiv.appendChild(div);
+	    
+	    $(".text").draggable(); 
+	    $("p").attr("contentEditable", "true"); 
+	    $(".ui.modal").modal('hide');
+ 	    var x=document.getElementById('itemtable').insertRow(0)
+	    var y=x.insertCell(0)
+	    y.innerHTML="Text" + TextCount + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#Text"+TextCount+"&quot;).remove();return false;'></i>"
+	    
+	}
 </script>
 <!--------------- add image ---------------->
 <script>
@@ -251,7 +237,7 @@ $(function(){
 	});
 });
 </script>
-<!--------------- change image box --------->
+<!--------------- open change_image modal -->
 <script>
 	function change(id){
 		$("#changeModal")
@@ -260,6 +246,7 @@ $(function(){
 		$("#choose").attr("value",id); 
 	}
 </script>
+<!---------- change image & right sidebar -->
 <script>
 	function changeImage(value){
  			var items = document.getElementsByName("icheck");
@@ -351,7 +338,6 @@ function search_1(){
 }
 </script>
 
-
 </head>
 <!---------------- body -------------------->
 
@@ -362,26 +348,22 @@ function search_1(){
 	<jsp:include page="/WEB-INF/view/header.jsp">
 	   <jsp:param name="path" value="<%=path %>"/>
 	</jsp:include>
-<!----------------------body end----------------------->
-
-
-<!----------------------container begin----------------------->	
+<!----------------------container begin--------------------->	
 	<div class="container" style="width:780px;">
 
-		<!----------------------sideBar Begin----------------------->	
-		<div class="sidebar">
-		
+<!----------------------sideBar Begin----------------------->	
+		<div class="sidebar">		
 			<div class="ui styled accordion">
 				  <!----------------------    Resize Workspace   ----------------------->	
 				  <div class="title"><i class="dropdown icon"></i> Resize Workspace <i class="fa fa-question" style="float:right;" data-title="Default size : 500x500"></i></div>
 				  <div class="content">
 					  <div class="accordion">
 					      <div class="ui right labeled input uu">
-							  <input oninput="info_width();" id="width" class="settinginput" value="500" type="text" placeholder="width(Number)" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+							  <input oninput="info_width();" id="width" class="settinginput" value="700" type="text" placeholder="width(Number)" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
 							  <div class="ui basic label">px </div>
 						  </div>
 					      <div class="ui right labeled input uu">
-							  <input oninput="info_height();" id="height" class="settinginput" value="500" type="text" placeholder="height(Number)" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+							  <input oninput="info_height();" id="height" class="settinginput" value="540" type="text" placeholder="height(Number)" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
 							  <div class="ui basic label">px </div>
 						  </div>
 						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" id="cp4">background color</button>
@@ -452,62 +434,67 @@ function search_1(){
 					  </div>					  
 				  <!----------------------    Add Text  ----------------------->	
 				  <div class="title"><i class="dropdown icon"></i> Add Text<i class="fa fa-question" style="float:right;" data-title=""></i></div>
-					  <div class="content">
-						  <div class="accordion">
-						      
-							  <button class="ui teal basic button" style="margin-top: 10px; width:100%;" onclick="addheader();">Add Header</button>
-							  <button class="ui teal basic button" style="margin-top: 10px; width:100%;"onclick="addText();">Add Text</button>
-						  </div>
+				  <div class="content" style="height:100px;">
+					  <div class="accordion">
+					  		<div id = "addTextModal" class="ui modal" style="height:300px;width:400px;">
+								<div class="header" style="text-align:center;">
+									<!-- <h3>Add Text</h3> -->
+									<div id="editor" style="height:180px;"> </div>
+								    <script type="text/javascript">
+								        $(function () {
+								            var editor = new wangEditor('editor');
+								            editor.config.menus = [
+								                                   /* 'source', */
+								                                   'fontsize',  // '|' 是菜单组的分割线
+								                                   'bold',
+								                                   'underline',
+								                                   'italic',
+								                                   'strikethrough',
+								                                   'eraser',
+								                                   'forecolor'
+								                                ];
+								            editor.create();
+								        });
+								    </script>
+									<div style="width:20%;margin:10px auto 30px;">
+										<button class="ui teal basic button" id = "addText" onclick="addT();">Add</button>
+									 </div> 
+								</div>
+							</div>
+						    <button class="ui teal basic button" style="margin-top: 10px; width:100%;"onclick="addText();">Add Text</button> 
 					  </div>
-					  				
+				  </div>	  				
 				  <!----------------------    Add Chart   ----------------------->		  
 				  <div class="title"><i class="dropdown icon"></i> Add Chart<i class="fa fa-question" style="float:right;" data-title=""></i></div>
-					  <div class="content">
-						  <div class="accordion">
-						      
-							  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="setWH();">Apply</button>
-						  </div>
-					  </div>	  
-					  					  
+				  <div class="content">
+					  <div class="accordion">
+						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="setWH();">Apply</button>
+					  </div>
+				  </div>	  		  					  
 			</div>
 		</div>
-		<!----------------------sideBar End----------------------->	
-		<!----------------------Workspace Begin--------------------->
+<!----------------------Workspace Begin--------------------->
 		<div  class="infographic_border" >
-			<div id="infographic" class="infographic_space" >
-				
-			
-			
+			<div id="infographic" class="infographic_space" >			
 			</div>
-		</div>
-		<!----------------------Workspace End----------------------->	
-		
-		
+		</div>	
 	</div>
 	
-	<!----------------------Right sideBar Begin----------------------->	
+<!----------------------Right sideBar Begin----------------------->	
 	<div class="sidebar2">
 		<div id="rightbar" class="ui styled accordion" style="padding: 0.75em 1em;">
 			<table id = "itemtable" class="ui teal table" >
 			  <tbody>
-
 			  </tbody>
 			</table>
 		</div>
-	</div>
-	<!----------------------Right sideBar End----------------------->	
-	
-	
-	
+	</div>	
 	<div id='push'></div>
-</div>
-<!----------------------container end----------------------->	
-
+</div>	
 <!----------------------footer begin----------------------->	
 <%-- 	<jsp:include page="/WEB-INF/view/footer.jsp">
 	   <jsp:param name="path" value="<%=path %>"/>
 	</jsp:include> --%>
-
-<!----------------------footer end----------------------->			
+<!----------------------footer end-------------------------->			
 </body>
 </html>
