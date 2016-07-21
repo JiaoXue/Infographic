@@ -468,13 +468,6 @@ function PieS(event){
 	}
 }
 function Pie(){
-	var whichpie = $("#WhichPie").val();
-	if(whichpie == "Doughnut"){
-		var pieRadius = ['50%','70%'];
-	}else{
-		var pieRadius = ['0%','70%'];
-	}
-	
 	var width=$("#infographic").width();
     var height=$("#infographic").height();
     var infographic = document.getElementById('infographic');
@@ -493,9 +486,152 @@ function Pie(){
     PieChart.setAttribute("style","width:"+width+"px;height:"+height+"px;");
 	infographic.appendChild(PieChart); 
 	var myChart = echarts.init(PieChart,$("#PieTheme").val());
+	var whichpie = $("#WhichPie").val();
+	if(whichpie == "Doughnut"){
+		var pieRadius = ['50%','70%'];
+		var option = {
+				 title: {
+		                text: $("#PieTitle").val(),
+		                x:'center'
+		            },
+				 toolbox: {
+		                feature: {
+		                    saveAsImage: {}
+		                }
+		            },
+			    tooltip: {
+			        trigger: 'item',
+			        formatter: "{a} <br/>{b}: {c} ({d}%)"
+			    },
+			    legend: {
+			        orient: 'vertical',
+			        x: 'left',
+			        data:legend
+			    },
+			    series: [
+			        {
+			            name:$("#PieTitle").val(),
+			            type:'pie',
+			            radius: pieRadius,
+			            avoidLabelOverlap: false,
+			            label: {
+			                normal: {
+			                    show: false,
+			                    position: 'center'
+			                },
+			                emphasis: {
+			                    show: true,
+			                    textStyle: {
+			                        fontSize: '30',
+			                        fontWeight: 'bold'
+			                    }
+			                }
+			            },
+			            labelLine: {
+			                normal: {
+			                    show: false
+			                }
+			            },
+			            data: Pievalue
+			        }
+			    ]
+			}; 
+	}else{
+		var option = {
+				 title: {
+		                text: $("#PieTitle").val(),
+		                x:'center'
+		            },
+				 toolbox: {
+		                feature: {
+		                    saveAsImage: {}
+		                }
+		            },
+			    tooltip: {
+			        trigger: 'item',
+			        formatter: "{a} <br/>{b}: {c} ({d}%)"
+			    },
+			    legend: {
+			        orient: 'vertical',
+			        x: 'left',
+			        data:legend
+			    },
+			    series: [
+			        {
+			            name:$("#PieTitle").val(),
+			            type:'pie',
+			            data: Pievalue
+			        }
+			    ]
+			}; 
+	}
+	
+	
+	myChart.setOption(option);
+	var x=document.getElementById('itemtable').insertRow(0)
+    var y=x.insertCell(0)
+    y.innerHTML="Pie" + PieNum + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove();$(&quot;#Pie"+PieNum+"&quot;).remove(); return false;'></i>"
+    PieNum ++;
+	$("#series").empty();
+	$("#PieData").empty();
+    $(".pie").draggable();
+	$(".ui.modal").modal('hide');
+	
+}
+</script>
+<!--------------- add Rose ------------------>	
+<script>
+var RoseNum = 1;
+function addRose(){
+	$("#addRoseModal")
+	  .modal('show')
+	;		
+} 
+function RoseS(event){
+	$("#RoseData").empty();
+	var pie = 1;
+	var y = document.getElementById('RoseData');
+	var x = $("#Roseseries").val();
+	for(var i=0;i<x;i++){
+	   var div = document.createElement('div');
+	   div.setAttribute("class","ui input");
+	   div.setAttribute("style","width:100%;margin:5px 5px;");
+	   var dataName = document.createElement('input');
+	   dataName.setAttribute("id","Legend"+pie);
+	   dataName.setAttribute("style","width:10%;margin:0px 5px;");
+	   dataName.setAttribute("placeholder","Legend");
+	   div.appendChild(dataName); 
+	   var input = document.createElement('input');
+	   input.setAttribute("id","pie"+pie);
+	   input.setAttribute("placeholder", pie+" value");
+	   pie++;
+	   div.appendChild(input); 
+	   y.appendChild(div);
+	}
+}
+function Rose(){
+
+	var width=$("#infographic").width();
+    var height=$("#infographic").height();
+    var infographic = document.getElementById('infographic');
+    var PieChart = document.createElement('div'); 
+    var legend ="'"+ $("#Legend1").val()+"'";
+	for(var i=2;i<=$("#Roseseries").val();i++){
+		legend = legend + "," + "'"+$("#Legend"+i).val()+"'";
+	}
+	var Pievalue = [];
+	for(var i=0;i<$("#Roseseries").val();i++){
+		var j = i+1;
+		Pievalue[i] = {"value":$("#pie"+j).val(),"name":$("#Legend"+j).val()}
+	}
+    PieChart.setAttribute("id","Rose"+RoseNum);
+    PieChart.setAttribute("class","Rose");
+    PieChart.setAttribute("style","width:"+width+"px;height:"+height+"px;");
+	infographic.appendChild(PieChart); 
+	var myChart = echarts.init(PieChart,$("#RoseTheme").val());
 	var option = {
 			 title: {
-	                text: $("#PieTitle").val(),
+	                text: $("#RoseTitle").val(),
 	                x:'center'
 	            },
 			 toolbox: {
@@ -512,28 +648,26 @@ function Pie(){
 		        x: 'left',
 		        data:legend
 		    },
+		    calculable : true,
 		    series: [
 		        {
-		            name:$("#PieTitle").val(),
+		            name:$("#RoseTitle").val(),
 		            type:'pie',
-		            radius: pieRadius,
-		            avoidLabelOverlap: false,
+		            roseType :'area',
 		            label: {
 		                normal: {
-		                    show: false,
-		                    position: 'center'
+		                    show: false
 		                },
 		                emphasis: {
-		                    show: true,
-		                    textStyle: {
-		                        fontSize: '30',
-		                        fontWeight: 'bold'
-		                    }
+		                    show: true
 		                }
 		            },
-		            labelLine: {
+		            lableLine: {
 		                normal: {
 		                    show: false
+		                },
+		                emphasis: {
+		                    show: true
 		                }
 		            },
 		            data: Pievalue
@@ -543,10 +677,12 @@ function Pie(){
 	myChart.setOption(option);
 	var x=document.getElementById('itemtable').insertRow(0)
     var y=x.insertCell(0)
-    y.innerHTML="Pie" + PieNum + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove();$(&quot;#Pie"+PieNum+"&quot;).remove(); return false;'></i>"
-    PieNum ++;
-	$("#series").empty();
-    $(".pie").draggable();
+    y.innerHTML="Rose" + RoseNum + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove();$(&quot;#Rose"+ RoseNum +"&quot;).remove(); return false;'></i>"
+    RoseNum ++;
+    
+    $("#RoseData").empty();
+    $("#Roseseries").empty();
+    $(".Rose").draggable();
 	$(".ui.modal").modal('hide');
 	
 }
@@ -555,7 +691,18 @@ function Pie(){
 <script>
 	function saveInfographic(){
 		var divContent = $(".stage").html();
-		alert(divContent);	
+		$.ajax({
+	  		   type: "POST",
+	  		   url:'<%=path %>/saveinfographic.action',
+	  		   data: "port=web&code="+divContent,
+	  		   success: function(data){
+	  			   if (data.SUCCESS) {		   
+	  				 alert("success");			   
+	 				} else {
+	 					alert("Fail");
+	 				}
+	  		   } 
+	  		});	
 	}
 </script>
 
@@ -762,10 +909,38 @@ function Pie(){
 										</div>
 									</div>
 								</div>
-						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="addLine();">Line chart</button>
-						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="addBar();">Bar chart</button>
-						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="addRadar();">Radar chart</button>
-						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="addPolar();">Polar area chart</button>
+						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="addRose();">Nightingale's Rose</button>
+						 		<!-- add Rose Chart modal -->
+						 		<div id = "addRoseModal" class="ui modal" style="height:400px;width:600px;">
+									<div class="header" style="text-align:center;">
+										<h3>Add Rose Chart</h3> 
+									</div>
+									<div style="text-align:center;padding:15px 10px;"> 
+										</br><h4>Type:</h4> 
+										<select id = "RoseTheme" name="RoseTheme" class="ui fluid search dropdown" style="width:80%;float:right;">
+											<option value="">Basic</option>
+											<option value="vintage">vintage</option>
+											<option value="dark">dark</option>
+											<option value="roma">roma</option>
+											<option value="shine">shine</option>
+											<option value="macarons">macarons</option>
+											<option value="infographic">infographic</option>
+										</select>
+										</br><h4>Theme:</h4> 
+										<div class="ui input" style="width:95%;margin:5px 10px;">
+											 <input id = "RoseTitle" type="text" placeholder="Rose Chart Title" >
+										</div>
+										<div class="ui input" style="width:95%;margin:5px 10px;">
+											 <input id = "Roseseries" type="text" placeholder="Number of Roseseries" oninput="RoseS(event);" >
+										</div>
+										<div id = "RoseData"></div>
+									</div>
+									<div style="text-align:center;padding:5px 0px;">
+										<div style="margin: 45px 10px;">
+											<button class="ui teal basic button" id = "addPie" onclick="Rose();">Add</button>
+										</div>
+									</div>
+								</div>
 						  
 					  </div>
 				  </div>	  		  					  
