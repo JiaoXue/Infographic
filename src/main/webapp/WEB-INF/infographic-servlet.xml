@@ -43,4 +43,7 @@
 	<bean id="IGalleryService" class="com.infographic.service.GalleryServiceImpl"></bean>
 	<bean id="IGalleryDAO" class="com.infographic.dao.GalleryDAOImpl"></bean>
 
+	<bean id="IInfographicService" class="com.infographic.service.InfographicServiceImpl"></bean>
+	<bean id="IInfographicDAO" class="com.infographic.dao.InfographicDAOImpl"></bean>
+
 </beans> 
