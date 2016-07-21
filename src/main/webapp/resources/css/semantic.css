@@ -1465,7 +1465,7 @@ input::selection {
 
 .ui.basic.buttons .button,
 .ui.basic.button {
-  background: transparent none !important;
+  background: rgba(255, 255, 255, 1) !important;
   color: rgba(0, 0, 0, 0.6) !important;
   font-weight: normal;
   border-radius: 0.28571429rem;

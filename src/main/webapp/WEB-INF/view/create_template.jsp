@@ -5,7 +5,6 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<% int TextCount = 0; %>
 
 <html>
 <head>
@@ -27,7 +26,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=path %>/resources/homecss/js/menu_jquery.js" type="text/javascript" ></script> 
 <script src="<%=path %>/resources/js/semantic.js" type="text/javascript" ></script> 
 <script src="<%=path %>/resources/js/icheck.js" type="text/javascript" ></script>
-<%-- <script src="<%=path %>/resources/js/bootstrap-wysiwyg.js" type="text/javascript" ></script> --%>
 
 <!-- resizable & draggable -->
 <script src="<%=path %>/resources/js/jquery-ui.js" type="text/javascript" ></script>
@@ -50,6 +48,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=path %>/resources/addText/dist/js/wangEditor.js" type="text/javascript" ></script>
 <link href="<%=path %>/resources/addText/dist/css/wangEditor.css" rel="stylesheet" type="text/css" media="screen">
 <!-- add Text -->
+
+<!-- add chart -->
+<script src="<%=path %>/resources/chart/echarts.js" type="text/javascript" ></script>
+<script src="<%=path %>/resources/chart/theme/dark.js" type="text/javascript" ></script>
+<script src="<%=path %>/resources/chart/theme/infographic.js" type="text/javascript" ></script>
+<script src="<%=path %>/resources/chart/theme/macarons.js" type="text/javascript" ></script>
+<script src="<%=path %>/resources/chart/theme/roma.js" type="text/javascript" ></script>
+<script src="<%=path %>/resources/chart/theme/shine.js" type="text/javascript" ></script>
+<script src="<%=path %>/resources/chart/theme/vintage.js" type="text/javascript" ></script>	
+<!-- add chart -->
 
 <!--------------- popup & modal ------------>
 <script>
@@ -75,50 +83,95 @@ function Geometries(){
 	;
 }
 </script>
-<!--------------- add layer ---------------->
-<script>
-function layer(){
-	var xy = 1;
-	var image = document.createElement("div");     //创建一个img元素 
-    /* image.setAttribute("width", "10%"); */
-    image.setAttribute("z-index", "1");
-    image.setAttribute("class", "d");
-    var myDiv = document.getElementById('infographic'); //获得dom对象  
-    myDiv.appendChild(image); //为dom添加子元素img     
-    var x=document.getElementById('itemtable').insertRow(0)
-    var y=x.insertCell(0)
-    y.innerHTML="Layer" + xy + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); return false;'></i>"
-    xy= xy+1;
-    
-    $(".d").draggable();   
-}
-</script>
-<!--------------- add text ------------------>
-<script>
- 	var TextCount = 0;
-	function addText(){
-		$("#addTextModal")
+<!--------------- add gradient ------------->
+ <script>
+	var layer = 1;
+	$(function() {
+        $('#begincolor').colorpicker();
+        $('#endcolor').colorpicker();
+        $('.tag.example .ui.dropdown')
+        .dropdown({
+          allowAdditions: true
+        })
+      ;
+    });
+	
+	function addLayer(){
+		$("#addLayerModal")
 		  .modal('show')
 		;		
 	}
-	function addT(){
-
-	    var x = $("#editor").html();
-	    var div = document.createElement("div");
-	    div.innerHTML=x;
-	    div.setAttribute("class","text");
-	    div.setAttribute("id","Text" + ++TextCount);
-	    var myDiv = document.getElementById('infographic');
-	    myDiv.appendChild(div);
-	    
-	    $(".text").draggable(); 
-	    $("p").attr("contentEditable", "true"); 
-	    $(".ui.modal").modal('hide');
- 	    var x=document.getElementById('itemtable').insertRow(0)
+	
+	function Layer(){
+		
+		var form_o = $("#formOption").val();
+		var height = $("#infographic").height();
+		var width = $("#infographic").width();
+		
+		if(form_o == 0 ){
+			var div = document.createElement("div"); 
+			div.setAttribute("style","background:linear-gradient(to bottom,"+$("#bcolor").val()+","+$("#ecolor").val()+"); width:"+width+"px; height:"+height+"px;");
+			var myDiv = document.getElementById('infographic'); 
+		    myDiv.appendChild(div);
+		}
+		else if(form_o == 1 ){
+			var div = document.createElement("div"); 
+			div.setAttribute("style", "background:linear-gradient(to right,"+$("#bcolor").val()+","+$("#ecolor").val()+");");
+			var myDiv = document.getElementById('infographic'); 
+		    myDiv.appendChild(div);
+		}
+		else if(form_o == 2 ){
+			var div = document.createElement("div"); 
+			div.setAttribute("style", "background:linear-gradient(to bottom right,"+$("#bcolor").val()+","+$("#ecolor").val()+");");
+			var myDiv = document.getElementById('infographic'); 
+		    myDiv.appendChild(div);
+		}
+		else if(form_o == 3 ){
+			var div = document.createElement("div"); 
+			div.setAttribute("style", "background:linear-gradient(to top right,"+$("#bcolor").val()+","+$("#ecolor").val()+");");
+			var myDiv = document.getElementById('infographic'); 
+		    myDiv.appendChild(div);
+		}
+		else if(form_o == 4 ){
+			var div = document.createElement("div"); 
+			div.setAttribute("style", "background:radial-gradient(circle,"+$("#bcolor").val()+","+$("#ecolor").val()+");");
+			var myDiv = document.getElementById('infographic'); 
+		    myDiv.appendChild(div);
+		}
+		div.setAttribute("class", "d");
+		div.setAttribute("id","Gradient" + layer);
+		var x=document.getElementById('itemtable').insertRow(0)
 	    var y=x.insertCell(0)
-	    y.innerHTML="Text" + TextCount + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#Text"+TextCount+"&quot;).remove();return false;'></i>"
+	    y.innerHTML="Gradient" + layer + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove();$(&quot;#Gradient"+layer+"&quot;).remove(); return false;'></i>"
+	    layer ++;
 	    
+	    $(".d").draggable();
+	    $(".d").resizable();
+	    $(".ui.modal").modal('hide');
 	}
+</script>
+<!--------------- add text ----------------->
+<script>
+var TextCount = 0;
+function addText(){
+	$("#addTextModal").modal('show');		
+}
+function addT(){
+	var x=document.getElementById('itemtable').insertRow(0);
+	var y=x.insertCell(0);
+	y.innerHTML="Text" + ++TextCount + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove(); $(&quot;#Text"+TextCount+"&quot;).remove();return false;'></i>";
+	var x = $("#editor").html();
+	var div = document.createElement("div");
+	div.innerHTML=x;
+	div.setAttribute("class","text");
+	div.setAttribute("id","Text" + TextCount);
+	var myDiv = document.getElementById('infographic');
+    myDiv.appendChild(div);
+	$(".text").draggable(); 
+	$(".text").resizable(); 
+	$(".text").attr("contentEditable", "true"); 
+	$(".ui.modal").modal('hide');
+}
 </script>
 <!--------------- add image ---------------->
 <script>
@@ -337,6 +390,176 @@ function search_1(){
   		});
 }
 </script>
+<!--------------- add table ---------------->
+<script>
+	var tableNum = 1;
+	
+	function addTable(){
+		$("#addTableModal")
+		  .modal('show')
+		;		
+	}
+	
+	function Table(){
+		var tableForm = $("#tableForm").val();
+		var tableColor = $("#tableColor").val();
+		var column =  $("#column").val();
+		var row = $("#row").val();
+		
+		var table = document.createElement('table'); 
+		table.setAttribute("class","ui table "+tableForm+" "+tableColor+"");
+		table.setAttribute("style","width:70%;");
+		var tbody = document.createElement('tbody');  
+		for (var i = 0; i < row; i++) {  
+			var tr = document.createElement('tr'); 
+			
+			for (var j = 0; j < column; j++) { 
+				var td = document.createElement('td'); 
+				var inner = document.createTextNode("＊");  
+		        td.appendChild(inner);
+		        tr.appendChild(td);
+			}
+		    tbody.appendChild(tr);
+		}
+		table.appendChild(tbody);  
+		document.getElementById('infographic').appendChild(table);  
+		
+		table.setAttribute("id","Table" + tableNum);
+		var x=document.getElementById('itemtable').insertRow(0)
+	    var y=x.insertCell(0)
+	    y.innerHTML="Table" + tableNum + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove();$(&quot;#Table"+tableNum+"&quot;).remove(); return false;'></i>"
+	    tableNum ++;
+		
+		$("table").draggable(); 
+		$("table").resizable(); 
+		$("table").attr("contentEditable", "true"); 
+	    
+		$(".ui.modal").modal('hide');
+	}
+</script>
+<!--------------- add pie ------------------>	
+<script>
+var PieNum = 1;
+function addPie(){
+	$("#addPieModal")
+	  .modal('show')
+	;		
+} 
+function PieS(event){
+	$("#PieData").empty();
+	var pie = 1;
+	var y = document.getElementById('PieData');
+	var x = $("#series").val();
+	for(var i=0;i<x;i++){
+	   var div = document.createElement('div');
+	   div.setAttribute("class","ui input");
+	   div.setAttribute("style","width:100%;margin:5px 5px;");
+	   var dataName = document.createElement('input');
+	   dataName.setAttribute("id","Legend"+pie);
+	   dataName.setAttribute("style","width:10%;margin:0px 5px;");
+	   dataName.setAttribute("placeholder","Legend");
+	   div.appendChild(dataName); 
+	   var input = document.createElement('input');
+	   input.setAttribute("id","pie"+pie);
+	   input.setAttribute("placeholder", pie+" value");
+	   pie++;
+	   div.appendChild(input); 
+	   y.appendChild(div);
+	}
+}
+function Pie(){
+	var whichpie = $("#WhichPie").val();
+	if(whichpie == "Doughnut"){
+		var pieRadius = ['50%','70%'];
+	}else{
+		var pieRadius = ['0%','70%'];
+	}
+	
+	var width=$("#infographic").width();
+    var height=$("#infographic").height();
+    var infographic = document.getElementById('infographic');
+    var PieChart = document.createElement('div'); 
+    var legend ="'"+ $("#Legend1").val()+"'";
+	for(var i=2;i<=$("#series").val();i++){
+		legend = legend + "," + "'"+$("#Legend"+i).val()+"'";
+	}
+	var Pievalue = [];
+	for(var i=0;i<$("#series").val();i++){
+		var j = i+1;
+		Pievalue[i] = {"value":$("#pie"+j).val(),"name":$("#Legend"+j).val()}
+	}
+    PieChart.setAttribute("id","Pie"+PieNum);
+    PieChart.setAttribute("class","pie");
+    PieChart.setAttribute("style","width:"+width+"px;height:"+height+"px;");
+	infographic.appendChild(PieChart); 
+	var myChart = echarts.init(PieChart,$("#PieTheme").val());
+	var option = {
+			 title: {
+	                text: $("#PieTitle").val(),
+	                x:'center'
+	            },
+			 toolbox: {
+	                feature: {
+	                    saveAsImage: {}
+	                }
+	            },
+		    tooltip: {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b}: {c} ({d}%)"
+		    },
+		    legend: {
+		        orient: 'vertical',
+		        x: 'left',
+		        data:legend
+		    },
+		    series: [
+		        {
+		            name:$("#PieTitle").val(),
+		            type:'pie',
+		            radius: pieRadius,
+		            avoidLabelOverlap: false,
+		            label: {
+		                normal: {
+		                    show: false,
+		                    position: 'center'
+		                },
+		                emphasis: {
+		                    show: true,
+		                    textStyle: {
+		                        fontSize: '30',
+		                        fontWeight: 'bold'
+		                    }
+		                }
+		            },
+		            labelLine: {
+		                normal: {
+		                    show: false
+		                }
+		            },
+		            data: Pievalue
+		        }
+		    ]
+		}; 
+	myChart.setOption(option);
+	var x=document.getElementById('itemtable').insertRow(0)
+    var y=x.insertCell(0)
+    y.innerHTML="Pie" + PieNum + "<i class='fa fa-times rfloat' onclick='$(this).closest(&quot;tr&quot;).remove();$(&quot;#Pie"+PieNum+"&quot;).remove(); return false;'></i>"
+    PieNum ++;
+	$("#series").empty();
+    $(".pie").draggable();
+	$(".ui.modal").modal('hide');
+	
+}
+</script>
+<!---------- save infographic -------------->
+<script>
+	function saveInfographic(){
+		var divContent = $(".stage").html();
+		alert(divContent);	
+	}
+</script>
+
+
 
 </head>
 <!---------------- body -------------------->
@@ -350,7 +573,6 @@ function search_1(){
 	</jsp:include>
 <!----------------------container begin--------------------->	
 	<div class="container" style="width:780px;">
-
 <!----------------------sideBar Begin----------------------->	
 		<div class="sidebar">		
 			<div class="ui styled accordion">
@@ -400,9 +622,7 @@ function search_1(){
 						    <div class="accordion">
 								<div class="content" >
 								    <div class="accordion">
-								    	
 								    	<button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="gallery();">Choose from Gallery</button>
-								    		
 								    		<!-- choose from gallery box -->		
 								    		<div id = "big_div" class="ui modal" style="height:600px;">
 											  	<div class="header" style="text-align:center;">
@@ -427,12 +647,129 @@ function search_1(){
 											</div>
 								    	<button class="ui teal basic button" style="margin-top: 10px;width:100%;">Upload Image</button>
 								    	<button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="Geometries();">Add Geometries</button>
-								    	<button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="layer();">Add layer</button>
+								    	<button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="addLayer();">Add Gradients</button>
+											<!-- add Gradients modal -->
+											<div id = "addLayerModal" class="ui modal" style="height:300px;width:400px;">
+												<div class="header" style="text-align:center;">
+													<h3>Add Gradients</h3> 
+												</div>
+												<div style="text-align:center;padding:15px 10px;">
+													<select id = "formOption" name="GradientsForms" class="ui fluid search dropdown" style="width:65%;float:right;">
+													  <option value="0">Top to Down</option>
+													  <option value="1">Left to Right</option>
+													  <option value="2">LeftTop to RightBottom</option>
+													  <option value="3">LeftBottom to RightTop</option>
+													  <option value="4">Circle</option>
+													</select>
+													</br><h4>Form:</h4> 	
+													<div id="begincolor" class="input-group colorpicker-component" style="width:65%;float:right;">
+													    <input id = "bcolor"type="text" value="#00AABB" class="form-control" />
+													    <span class="input-group-addon"><i></i></span>
+													</div>
+													</br><h4>Begin With:</h4> 
+													<div id="endcolor" class="input-group colorpicker-component" style="width:65%;float:right;">
+													    <input id ="ecolor" type="text" value="#00AABB" class="form-control" />
+													    <span class="input-group-addon"><i></i></span>
+													</div>
+													</br><h4>End With:</h4> 
+								
+													<div style="width:20%;margin:10px auto 30px;">
+														<button class="ui teal basic button" id = "addGradients" onclick="Layer();">Add</button>
+													 </div>
+												</div>
+											</div>
 								    </div>
 								</div>
 						    </div>
-					  </div>					  
-				  <!----------------------    Add Text  ----------------------->	
+					  </div>				
+				  <!----------------------    Add Chart   ----------------------->		  
+				  <div class="title"><i class="dropdown icon"></i> Add Chart<i class="fa fa-question" style="float:right;" data-title=""></i></div>
+				  <div class="content">
+					  <div class="accordion">
+						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="addTable();">Table</button>
+						  	  	<!-- add table modal -->
+						  	  	<div id = "addTableModal" class="ui modal" style="height:300px;width:400px;">
+									<div class="header" style="text-align:center;">
+										<h3>Add Table</h3> 
+									</div>
+									<div style="text-align:center;padding:15px 10px;"> 	
+										<select id = "tableForm" name="tableForms" class="ui fluid search dropdown" style="width:65%;float:right;">
+											<option value="very basic">Very Basic</option>
+											<option value="basic">Basic</option>
+											<option value="striped">Striped</option>
+											<option value="celled">Celled</option>
+										</select>
+										</br><h4>Form:</h4> 
+										<select id = "tableColor" name="tableColor" class="ui fluid search dropdown" style="width:65%;float:right;">
+											<option value="red">red</option>
+											<option value="orange">orange</option>
+											<option value="yellow">yellow</option>
+											<option value="olive">olive</option>
+											<option value="green">green</option>
+											<option value="teal">teal</option>
+											<option value="blue">blue</option>
+											<option value="violet">violet</option>
+											<option value="purple">purple</option>
+											<option value="pink">pink</option>
+											<option value="grey">grey</option>
+											<option value="black">black</option>
+										</select>
+										</br><h4>Color:</h4>
+										<div class="ui input" style="width:65%;float:right;margin:5px 0px;">
+										  <input id = "column" type="text" placeholder="column" >
+										</div>
+										<div class="ui input" style="width:65%;float:right;margin:5px 0px;">
+										  <input id = "row" type="text" placeholder="row">
+										</div>
+										<div style="margin: 45px 10px;">
+											<button class="ui teal basic button" id = "addTable" onclick="Table();">Add</button>
+										 </div>
+									</div>
+								</div>
+						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="addPie();">Pie chart</button>
+						  		<!-- add Pie Chart modal -->
+						  		<div id = "addPieModal" class="ui modal" style="height:400px;width:600px;">
+									<div class="header" style="text-align:center;">
+										<h3>Add Pie Chart</h3> 
+									</div>
+									<div style="text-align:center;padding:15px 10px;"> 
+										<select id = "WhichPie" name="WhichPie" class="ui fluid search dropdown" style="width:80%;float:right;">
+											<option value="Pie">Basic Pie Chart</option>
+											<option value="Doughnut">Doughnut Pie Chart</option>
+										</select>
+										</br><h4>Type:</h4> 
+										<select id = "PieTheme" name="PieTheme" class="ui fluid search dropdown" style="width:80%;float:right;">
+											<option value="">Basic</option>
+											<option value="vintage">vintage</option>
+											<option value="dark">dark</option>
+											<option value="roma">roma</option>
+											<option value="shine">shine</option>
+											<option value="macarons">macarons</option>
+											<option value="infographic">infographic</option>
+										</select>
+										</br><h4>Theme:</h4> 
+										<div class="ui input" style="width:95%;margin:5px 10px;">
+											 <input id = "PieTitle" type="text" placeholder="Pie Chart Title" >
+										</div>
+										<div class="ui input" style="width:95%;margin:5px 10px;">
+											 <input id = "series" type="text" placeholder="Number of series" oninput="PieS(event);" >
+										</div>
+										<div id = "PieData"></div>
+									</div>
+									<div style="text-align:center;padding:5px 0px;">
+										<div style="margin: 45px 10px;">
+											<button class="ui teal basic button" id = "addPie" onclick="Pie();">Add</button>
+										</div>
+									</div>
+								</div>
+						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="addLine();">Line chart</button>
+						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="addBar();">Bar chart</button>
+						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="addRadar();">Radar chart</button>
+						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="addPolar();">Polar area chart</button>
+						  
+					  </div>
+				  </div>	  		  					  
+			      <!----------------------    Add Text  ----------------------->	
 				  <div class="title"><i class="dropdown icon"></i> Add Text<i class="fa fa-question" style="float:right;" data-title=""></i></div>
 				  <div class="content" style="height:100px;">
 					  <div class="accordion">
@@ -445,6 +782,7 @@ function search_1(){
 								            var editor = new wangEditor('editor');
 								            editor.config.menus = [
 								                                   /* 'source', */
+								                                   'fontfamily',
 								                                   'fontsize',  // '|' 是菜单组的分割线
 								                                   'bold',
 								                                   'underline',
@@ -463,15 +801,9 @@ function search_1(){
 							</div>
 						    <button class="ui teal basic button" style="margin-top: 10px; width:100%;"onclick="addText();">Add Text</button> 
 					  </div>
-				  </div>	  				
-				  <!----------------------    Add Chart   ----------------------->		  
-				  <div class="title"><i class="dropdown icon"></i> Add Chart<i class="fa fa-question" style="float:right;" data-title=""></i></div>
-				  <div class="content">
-					  <div class="accordion">
-						  <button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="setWH();">Apply</button>
-					  </div>
-				  </div>	  		  					  
+				  </div>
 			</div>
+			<button class="ui teal basic button" style="margin-top: 10px;width:100%;" onclick="saveInfographic();">Save</button>
 		</div>
 <!----------------------Workspace Begin--------------------->
 		<div  class="infographic_border" >

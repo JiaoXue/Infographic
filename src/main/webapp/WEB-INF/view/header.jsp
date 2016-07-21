@@ -7,10 +7,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	     <div class="logo" style="padding: 15px;align:center;">
 			<a href="<%=path %>/home.do>" ><h1 style="float:left;">Infographic</h1></a>
 		 </div>
-		 <div class="top_right" >
+		 <div class="top_right" style="margin-right:10px;">
 		   <ul style="color:black;">
 		    <li><div style="float:left;padding: 15px;"><h5 style="margin:0;">Welcome <%= (String)session.getAttribute("usersname") %></h5></div><img src="<%=path %>/resources/images/head/<%= (String)session.getAttribute("usersid") %>.jpg" style="height:45px;border-radius:100px;" alt=""/></li>
-			<li><a href="">Sign Out</a></li>|
+			<!-- <li><a href="">Sign Out</a></li>|
 		    <li class="login" >
 				 <div id="loginContainer"><a href="#" id="loginButton"><span>Account</span></a>
 					  <div id="loginBox">                
@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						   </form>
 				        </div>
 			      </div>
-			  </li>
+			  </li> -->
 		   </ul>
 	     </div>
 		 <div class="clearfix"></div>
