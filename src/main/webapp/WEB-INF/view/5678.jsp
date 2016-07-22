@@ -7,6 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <html>
 
+
 <head>
 	<title>test page 2</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -78,18 +79,19 @@ function saveTemplate(){
 	;		
 } 
 	function saveInfographic(){
-		alert($("#tag").tagit("assignedTags"));
+		var tagString = $("#tag").tagit("assignedTags");
 		var divContent = $(".infographic_border").html();
+		var templateName = $("#TemplateName").val();
 		alert(divContent);
 		$.ajax({
 	  		   type: "POST",
 	  		   url:'<%=path %>/saveinfographic.action',
-	  		   data: "port=web&code="+divContent+"tags="+$("#tag").tagit("assignedTags"),
+	  		   data: "port=web&code="+divContent+"&tags="+ tagString +"&tamplateName="+ templateName,
 	  		   success: function(data){
 	  			   if (data.SUCCESS) {		   
-	  				    alert("success");			   
+	  				    alert(data.MSG);			   
 	 				} else {
-	 					alert("Fail");
+	 					alert(data.MSG);			   
 	 				}
 	  		   } 
 	  		});	
