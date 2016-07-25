@@ -15,10 +15,20 @@ public class TemplateServiceImpl implements ITemplateService{
 	
 	@Override
 	public int createTemplate(String user,String tag,String name,String url){
-		
-		int createTemplate = templateDAO.createTemplate(user,tag,name,url);
-		
+		int createTemplate = templateDAO.createTemplate(user,tag,name,url);		
 		return createTemplate;
+	}
+	
+	@Override
+	public List<Map<String, Object>> searchTemplate(String searching){
+		List<Map<String, Object>> TemplateList = templateDAO.searchTemplate(searching);
+		return TemplateList;
+	}
+	
+	@Override
+	public List<Map<String, Object>> getTemplateList(){
+		List<Map<String, Object>> galleryList = templateDAO.getTemplateList();
+		return galleryList;
 	}
 	
 }

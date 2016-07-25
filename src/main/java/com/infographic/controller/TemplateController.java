@@ -55,20 +55,70 @@ public class TemplateController extends baseController{
 	@Autowired
 	private TemplateServiceImpl templateServiceImpl;
 	
-	@RequestMapping(value = "/saveinfographic")
+	@RequestMapping(value = "/getTemplate")
+	public void getgallery(HttpServletRequest request,HttpServletResponse response){
+		
+		
+		try{
+			List<Map<String, Object>> TemplateList = templateServiceImpl.getTemplateList();
+			Map<String, Object> result = new HashMap<String, Object>();
+			System.out.println(TemplateList);
+			if (TemplateList != null) {
+				result.put("data", TemplateList);
+				result.put("SUCCESS", true);
+				sendObject(response, result);
+
+			} else {
+				System.out.println("No Template");
+				sendFailureMessage(response, "Invalid username and password!");
+			}
+		}catch (Exception e) {
+			System.out.println("Fail");
+		}
+		
+		return;
+	}
+	
+	
+	
+	@RequestMapping(value = "/SearchTemplate")
+	public void search_infographic(HttpServletRequest request, HttpServletResponse response) {
+		String searching = request.getParameter("search");
+		try{
+			List<Map<String, Object>> TemplateList = templateServiceImpl.searchTemplate(searching);
+			System.out.println(TemplateList);
+			Map<String, Object> result = new HashMap<String, Object>();
+			if (TemplateList != null) {
+				result.put("data", TemplateList);
+				result.put("SUCCESS", true);
+				sendObject(response, result);
+
+			} else {
+				System.out.println("Sorry, we don't have Related template in our gallery.");
+				sendFailureMessage(response, "Sorry, we don't have Related template in our gallery. You could create your own template.");
+			}
+		}catch (Exception e) {
+			System.out.println("Fail");
+		}
+		
+		return;
+	}
+		
+	
+	@RequestMapping(value = "/saveTemplate")
 	public void save_infographic(HttpServletRequest request, HttpServletResponse response) {
 		
 		String template_code = request.getParameter("code");
 		String template_tag = request.getParameter("tags");
 		String template_name = request.getParameter("tamplateName");
 		HttpSession session = request.getSession();
+		System.out.println(template_code);
 		
 		Date now = new Date(); 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 		String Time = dateFormat.format( now );  
 		String userID = (String) session.getAttribute("usersid");
 		String  template_url = Time + userID;
-		System.out.println(template_url);
 		
 		String path = "/Users/apple/Documents/workspace/Infographic_Master/src/main/webapp/WEB-INF/view/template";
 		System.out.println(path);

@@ -13,38 +13,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="viewport" content="width=device-width, height=device-height,initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<link href="<%=path %>/resources/homecss/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<link href="<%=path %>/resources/indexCss/style.css" rel='stylesheet' type='text/css' />
-<link href="<%=path %>/resources/css/semantic.css" rel='stylesheet' type='text/css' />
-<link href="<%=path %>/resources/css/font-awesome.min.css"  rel="stylesheet" type="text/css">
-
-<script type="text/javascript" src="<%=path %>/resources/homecss/js/jquery-1.11.1.min.js"></script>
-<script src="<%=path %>/resources/js/semantic.js"></script>
-<script src="<%=path %>/resources/homecss/js/menu_jquery.js"></script>
-<script type="application/x-javascript"> 
-	addEventListener("load", function() { 
-		setTimeout(hideURLbar, 0); }, false); 
-	function hideURLbar(){ window.scrollTo(0,1);
-	} 
-</script>
-
-<%-- <script type="text/javascript"> 
-$(document).ready(function(){
-	$.ajax({
-		   type: "POST",
-		   url:'<%=path %>/GetUserInfo.action',
-		   data: "web",
-		   success: function(data){
-			   if (data.success) {
- 				  alert(data.msg); 
-				  
-				} else {
-	 			  alert(data.msg);
-				}
-		   } 
-		});
-	});
-</script> --%>
+<jsp:include page="include.jsp" >
+	<jsp:param name="path" value="<%=path %>"/>
+</jsp:include>
 
 </head>
 

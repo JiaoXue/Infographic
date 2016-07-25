@@ -64,8 +64,8 @@ function Geometries(){
 	function Layer(){
 		
 		var form_o = $("#formOption").val();
-		var height = $("#infographic").height();
-		var width = $("#infographic").width();
+		var height = 100;
+		var width = 100;
 		
 		if(form_o == 0 ){
 			var div = document.createElement("div"); 
@@ -655,20 +655,21 @@ function Rose(){
 				});
 		});
 </script>
-<!---------- save infographic -------------->
+<!---------- save template -------------->
 <script>
 function saveTemplate(){
+	var divContent = $(".stage").html();
 	$("#saveModal")
 	  .modal('show')
 	;		
 } 
-	function saveInfographic(){
+	function Templaten(){
 		var tagString = $("#tag").tagit("assignedTags");
-		var divContent = $(".infographic_border").html();
+		var divContent = $(".stage").html();
 		var templateName = $("#TemplateName").val();
 		$.ajax({
 	  		   type: "POST",
-	  		   url:'<%=path %>/saveinfographic.action',
+	  		   url:'<%=path %>/saveTemplate.action',
 	  		   data: "port=web&code="+divContent+"&tags="+ tagString +"&tamplateName="+ templateName,
 	  		   success: function(data){
 	  			   if (data.success) {		   
@@ -889,7 +890,7 @@ function saveTemplate(){
 										<h3>Add Rose Chart</h3> 
 									</div>
 									<div style="text-align:center;padding:15px 10px;"> 
-										</br><h4>Type:</h4> 
+										 
 										<select id = "RoseTheme" name="RoseTheme" class="ui fluid search dropdown" style="width:80%;float:right;">
 											<option value="">Basic</option>
 											<option value="vintage">vintage</option>
@@ -967,7 +968,7 @@ function saveTemplate(){
 					</div>
 					<div style="text-align:center;padding:5px 0px;">
 						<div style="margin: 45px 10px;">
-							<button class="ui teal basic button" onclick="saveInfographic();">save</button>
+							<button class="ui teal basic button" onclick="Templaten();">save</button>
 						</div>
 					</div>
 			</div>

@@ -22,6 +22,14 @@ public class TemplateDAOImpl implements ITemplateDAO{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	public List<Map<String, Object>> getTemplateList(){
+		String sql = "SELECT * FROM template";
+		List<Map<String, Object>> template = jdbcTemplate.queryForList(sql);
+		return template;
+	}
+	
+	
+	
 	@Override
 	public int createTemplate(String user,String tag, String name,String url){
 		
@@ -51,6 +59,36 @@ public class TemplateDAOImpl implements ITemplateDAO{
 		 }
 		 System.out.println("create:"+createTemplateResult);
 		return createTemplateResult;
+	}
+	
+	
+	@Override
+	public List<Map<String, Object>> searchTemplate(String searching){
+		String sql = "SELECT * FROM tag where name = '"+ searching + "'";
+		List<Map<String, Object>> tag = jdbcTemplate.queryForList(sql);
+		
+		String tag_id = tag.get(0).get("id").toString();
+		
+		
+		String sql_1 = "SELECT * FROM template_tag where tag_id = '"+ tag_id + "'";
+		List<Map<String, Object>> template_url = jdbcTemplate.queryForList(sql_1);
+		
+		System.out.println(template_url);
+		
+		ArrayList id = new ArrayList();
+		int length = template_url.size();
+		for(int i = 0;i < length;i++){
+			id.add(template_url.get(i).get("template_url").toString());
+		}
+		
+		List<Map<String, Object>> template = new ArrayList<Map<String, Object>>();
+		
+		for(int i = 0;i < length;i++){
+			String sql_2 = "SELECT * FROM template where url = '"+ id.get(i) + "'";
+			template.add(jdbcTemplate.queryForList(sql_2).get(0));	
+	    }
+		
+		return template;
 	}
 	
 }
