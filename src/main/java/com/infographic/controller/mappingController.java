@@ -37,12 +37,11 @@ public class mappingController {
 		return "create_template";
 	}
 	
-	
-	
-	
-	
-	
-	
+	@RequestMapping(value = "/create_infographic", method = RequestMethod.GET)
+	public String create_infographic(Model model) {	
+		return "create_infographic";
+	}
+
 	@RequestMapping(value = "/lay", method = RequestMethod.GET)
 	public String lay(Model model) {	
 		return "c_template/index";

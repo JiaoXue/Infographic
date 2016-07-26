@@ -16,33 +16,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <jsp:include page="include.jsp" >
 	<jsp:param name="path" value="<%=path %>"/>
 </jsp:include>
-
 <script>
-function QueryString(){
-	var name,value,i;
-	var str=location.href;//获得浏览器地址栏URL串
-	var num=str.indexOf("?")
-	str=str.substr(num+1);//截取“?”后面的参数串
-	var arrtmp=str.split("&");//将各参数分离形成参数数组
-	for(i=0;i < arrtmp.length;i++){
-		num=arrtmp[i].indexOf("=");
-		if(num>0){
-		name=arrtmp[i].substring(0,num);//取得参数名称
-		value=arrtmp[i].substr(num+1);//取得参数值
-		this[name]=value;//定义对象属性并初始化
-		}
-	}
+$(document).ready(function(){
+$("#templateBox").hide();
+});
+</script>
+<script>
+function searchT(){
+	var searching = $("#templateSearching").val();
+	$.ajax({
+		   type: "POST",
+		   url:'<%=path %>/SearchTemplate.action',
+		   data: "port=web&search="+searching,
+		   success: function(data){
+			   if (data.SUCCESS) {
+				   $("#templateBox").empty();
+				   $("#templateBox").show();
+				   var length = data.data.length;
+				   var myDiv = document.getElementById('templateBox');
+				   var ul = document.createElement("ul");
+				   ul.setAttribute("class","hover_pack right");
+				   ul.innerHTML="<li style='margin:auto 0px;'><a class='b_btn'><span > <h4>Searching Result</h4></span> </a></li>";
+				   myDiv.appendChild(ul);
+				  
+				  for(var i = 0;i<length;i++){
+					  
+					  var a = document.createElement("a");
+					  a.setAttribute("id",data.data[i].url); 
+					  a.setAttribute("href","<%=path %>/create_infographic.do?url=template/"+data.data[i].url+".jsp");
+					  a.setAttribute("class","width25"); 
+					  img = document.createElement("img");
+					  img.src="<%=path %>/resources/images/templates/"+data.data[i].url+".png";
+					  img.setAttribute("class","border-radius width25")
+				  	  a.appendChild(img);
+				  	  myDiv.appendChild(a);
+				  }   
+				} else {
+					alert(data.msg);			   
+				}
+		   } 
+		});		
 }
-var Request=new QueryString();//使用new运算符创建参数对象实例
 </script>
-<script>
-var url = Request["url"]
-alert(url);
-</script>
-
 
 </head>
-
 
 <body style="height:100%;">
 <div id="wrapper">
@@ -62,71 +79,69 @@ alert(url);
 					
 					<div style="width:100%;align:center;">	
 						<div style="width:30%;" class="ui action input">
-						  <input type="text" placeholder="Search for infographics">
-						  <button class="ui icon button">
-						    <i class="fa fa-search"></i>
-						  </button>
+						  <input id = "templateSearching" type="text" placeholder="Search for infographics">
+						  <button class="ui icon button" onclick="searchT();"><i class="fa fa-search"></i></button>
 						</div>
 					</div>
-					
-					<ul class="hover_pack right">
-						<li>
-							 <a href="" class="b_btn"><span > <h4>Football</h4></span> </a>
-						</li>				 
-						<li>
-							<a href="">
-						    <img src="<%=path %>/resources/images/templates/football/football_1.png" class="img-responsive border-radius" alt=""/></a>
-						</li>		
-						<li>
-							<a href="<%=path %>/football_1" >
-				            <img src="<%=path %>/resources/images/templates/football/football_6.jpg" class="img-responsive border-radius" alt=""/></a>
-						</li>	
-						<div class="clear"></div>	
-					</ul>
-					<ul class="hover_pack left">
-						<li>
-							 <a href="" class="b_btn"><span > <h4>Text</h4></span> </a>
-						</li>
-						<li>
-							<a href="">
-				            <img src="<%=path %>/resources/images/templates/football/football_3.jpeg" class="img-responsive border-radius" alt=""/></a>
-						</li>				
-						<li>
-							<a href="">
-				            <img src="<%=path %>/resources/images/templates/football/football_4.png" class="img-responsive border-radius" alt=""/></a>
-						</li>	
+					<div id="templateBox" style="margin:20px 0px;">
+					</div> 
+					<div id = "Servertemplate">
+						<ul class="hover_pack right">
+							<li><a href="" class="b_btn"><span > <h4>football</h4></span> </a></li>
+							<li><a href="" class="b_btn"><span > <h4>EUROS</h4></span> </a></li>
+							<li><a href="" class="b_btn"><span > <h4>New in</h4></span> </a></li>
+						</ul>
+						
+						
+						<ul class="hover_pack right">			 
+							<li>
+								<a href="<%=path %>/football_1" >
+					            <img src="<%=path %>/resources/images/templates/football/football_6.jpg" class="img-responsive border-radius" alt=""/></a>
+							</li>
+							<li>
+								<a href="">
+							    <img src="<%=path %>/resources/images/templates/football/football_1.png" class="img-responsive border-radius" alt=""/></a>
+							</li>		
+								
 							
-						<div class="clear"></div>																																						
-					</ul>
-					<ul class="hover_pack left right">
-						<li>
-							 <a href="" class="b_btn"><span > <h4>New In</h4></span> </a>
-						</li>		
-						<li>
-							<a href="" >
-				            <img src="<%=path %>/resources/images/templates/football/football_5.jpeg" class="img-responsive border-radius" alt=""/></a>
-						</li>				
-						<li>
-							<a href="">
-				            <img src="<%=path %>/resources/images/templates/football/football_2.jpeg" class="img-responsive border-radius" alt=""/></a>
-						</li>
-						<div class="clear"></div>																																						
-					</ul>
-					<ul class="hover_pack left">
-						<li>
-							 <a href="" class="b_btn"><span > <h4>Euros</h4></span> </a>
-						</li>
-						<li>
-							<a href="" >
-				            <img src="<%=path %>/resources/images/templates/people.png" class="img-responsive border-radius" alt=""/></a>
-						</li>	
-							
-						<li>
-							<a href="">
-				            <img src="<%=path %>/resources/images/templates/NewTemplate.jpg" class="img-responsive border-radius" alt=""/></a>
-						</li>	
-						<div class="clear"></div>																																						
-					</ul>
+							<div class="clear"></div>
+						</ul>
+						<ul class="hover_pack left">
+							<li>
+								<a href="">
+					            <img src="<%=path %>/resources/images/templates/football/football_3.jpeg" class="img-responsive border-radius" alt=""/></a>
+							</li>				
+							<li>
+								<a href="">
+					            <img src="<%=path %>/resources/images/templates/football/football_4.png" class="img-responsive border-radius" alt=""/></a>
+							</li>	
+								
+							<div class="clear"></div>																																						
+						</ul>
+						<ul class="hover_pack left right">		
+							<li>
+								<a href="" >
+					            <img src="<%=path %>/resources/images/templates/football/football_5.jpeg" class="img-responsive border-radius" alt=""/></a>
+							</li>				
+							<li>
+								<a href="">
+					            <img src="<%=path %>/resources/images/templates/football/football_2.jpeg" class="img-responsive border-radius" alt=""/></a>
+							</li>
+							<div class="clear"></div>																																						
+						</ul>
+						<ul class="hover_pack left">
+							<li>
+								<a href="" >
+					            <img src="<%=path %>/resources/images/templates/people.png" class="img-responsive border-radius" alt=""/></a>
+							</li>	
+								
+							<li>
+								<a href="">
+					            <img src="<%=path %>/resources/images/templates/NewTemplate.jpg" class="img-responsive border-radius" alt=""/></a>
+							</li>	
+							<div class="clear"></div>																																						
+						</ul>
+					</div>
 					<div class="clear"></div>	
 				</div>
 	</div>

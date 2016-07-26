@@ -83,6 +83,11 @@ body a{
 	background-color: white;
 /* 	border-radius: 25px; */
 }
+.width25{
+	width:22.333333%;
+	margin:9px;
+}
+
 .infographic_space{
 	
 	width:700px;height:540px; 

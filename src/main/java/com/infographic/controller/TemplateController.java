@@ -99,6 +99,7 @@ public class TemplateController extends baseController{
 			}
 		}catch (Exception e) {
 			System.out.println("Fail");
+			sendFailureMessage(response, "Sorry, we don't have Related template in our gallery. You could create your own template.");
 		}
 		
 		return;
