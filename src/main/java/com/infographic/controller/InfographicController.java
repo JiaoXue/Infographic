@@ -43,87 +43,34 @@ import com.infographic.common.util.SessionUtils;
 import com.infographic.common.util.HtmlUtil;
 import com.infographic.common.util.StringUtil;
 
-import com.infographic.service.TemplateServiceImpl;
-
+import com.infographic.service.InfographicServiceImpl;
 
 @Controller
-public class TemplateController extends baseController{
-	@Autowired
-	ServletContext servletContext;
-//	@Autowired
-//	private IInfographicDAO iInfographicDAO;
-	@Autowired
-	private TemplateServiceImpl templateServiceImpl;
-	
-	@RequestMapping(value = "/getTemplate")
-	public void getgallery(HttpServletRequest request,HttpServletResponse response){
-		
-		
-		try{
-			List<Map<String, Object>> TemplateList = templateServiceImpl.getTemplateList();
-			Map<String, Object> result = new HashMap<String, Object>();
-			System.out.println(TemplateList);
-			if (TemplateList != null) {
-				result.put("data", TemplateList);
-				result.put("SUCCESS", true);
-				sendObject(response, result);
+public class InfographicController extends baseController{
 
-			} else {
-				System.out.println("No Template");
-				sendFailureMessage(response, "Invalid username and password!");
-			}
-		}catch (Exception e) {
-			System.out.println("Fail");
-		}
-		
-		return;
-	}
+	@Autowired
+	private InfographicServiceImpl infographicServiceImpl;
 	
-	
-	
-	@RequestMapping(value = "/SearchTemplate")
-	public void search_infographic(HttpServletRequest request, HttpServletResponse response) {
-		String searching = request.getParameter("search");
-		try{
-			List<Map<String, Object>> TemplateList = templateServiceImpl.searchTemplate(searching);
-			System.out.println(TemplateList);
-			Map<String, Object> result = new HashMap<String, Object>();
-			if (TemplateList != null) {
-				result.put("data", TemplateList);
-				result.put("SUCCESS", true);
-				sendObject(response, result);
-
-			} else {
-				System.out.println("Sorry, we don't have Related template in our gallery.");
-				sendFailureMessage(response, "Sorry, we don't have Related template in our gallery. You could create your own template.");
-			}
-		}catch (Exception e) {
-			System.out.println("Fail");
-		}
+	@RequestMapping(value = "/saveInfographic")
+	public void save_infographic(HttpServletRequest request, HttpServletResponse response) {
 		
-		return;
-	}
-		
-	
-	@RequestMapping(value = "/saveTemplate")
-	public void save_template(HttpServletRequest request, HttpServletResponse response) {
-		
-		String template_code = request.getParameter("code");
-		String template_tag = request.getParameter("tags");
-		String template_name = request.getParameter("tamplateName");
+		String infographic_code = request.getParameter("code");
+		String infographic_tag = request.getParameter("tags");
+		String infographic_name = request.getParameter("InfographicName");
+		String template_url = request.getParameter("TemplateUrl");
 		HttpSession session = request.getSession();
-		System.out.println(template_code);
+		System.out.println(infographic_code);
 		
 		Date now = new Date(); 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 		String Time = dateFormat.format( now );  
 		String userID = (String) session.getAttribute("usersid");
-		String  template_url = Time + userID;
+		String  infographic_url = Time + userID;
 		
-		String path = "/Users/apple/Documents/workspace/Infographic_Master/src/main/webapp/WEB-INF/view/template";
+		String path = "/Users/apple/Documents/workspace/Infographic_Master/src/main/webapp/WEB-INF/view/infographic";
 		System.out.println(path);
 
-        String fileName = template_url + ".jsp";
+        String fileName = infographic_url + ".jsp";
         File f = new File(path,fileName); 
         if(f.exists()) { 
         	System.out.println("file already exist"); 
@@ -135,28 +82,29 @@ public class TemplateController extends baseController{
             try { 
                 f.createNewFile();
                 PrintWriter writer = new PrintWriter(f, "UTF-8");
-                writer.println(template_code);
+                writer.println(infographic_code);
                 writer.close();
                 
-                int CreateNum = templateServiceImpl.createTemplate(userID,template_tag,template_name,template_url);
+                int CreateNum = infographicServiceImpl.createInfographic(userID,infographic_tag,infographic_name,infographic_url,template_url);
                 Map<String, Object> result = new HashMap<String, Object>();
                 if(CreateNum>0){
                 	result.put(SUCCESS, true);
-        			result.put(MSG, "Creating Template Successfully!");
-        			System.out.println("Creating Template Successfully!"); 
+        			result.put(MSG, "Creating Infographic Successfully!");
+        			System.out.println("Creating Infographic Successfully!"); 
                 }else {
         			result.put(SUCCESS, false);
-        			result.put(MSG, "没有修改成功！");
-        			System.out.println("fail to create Template!"); 
+        			result.put(MSG, "Fail");
+        			System.out.println("fail to create Infographic!"); 
         		}
         		sendObject(response, result);
                 
             } catch (IOException e) { 
-                System.out.println("fail to create Template!"); 
+                System.out.println("fail to create Infographic!"); 
                 e.printStackTrace(); 
             }   
         }
 		return;
 
 	}
+	
 }

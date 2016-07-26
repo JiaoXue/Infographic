@@ -45,5 +45,8 @@
 
 	<bean id="ITemplateService" class="com.infographic.service.TemplateServiceImpl"></bean>
 	<bean id="ITemplateDAO" class="com.infographic.dao.TemplateDAOImpl"></bean>
+	
+	<bean id="IInfographicService" class="com.infographic.service.InfographicServiceImpl"></bean>
+	<bean id="IInfographicDAO" class="com.infographic.dao.InfographicDAOImpl"></bean>
 
 </beans> 

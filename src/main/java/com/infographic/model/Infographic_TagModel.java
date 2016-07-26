@@ -3,7 +3,7 @@ package com.infographic.model;
 public class Infographic_TagModel {
 	
 	private int Id;
-	private int Infographic_id;
+	private String Infographic_url;
 	private int Tag_id;
 	
 	public int getId() {
@@ -12,11 +12,11 @@ public class Infographic_TagModel {
 	public void setId(int id) {
 		Id = id;
 	}
-	public int getInfographic_id() {
-		return Infographic_id;
+	public String getInfographic_url() {
+		return Infographic_url;
 	}
-	public void setInfographic_id(int infographic_id) {
-		Infographic_id = infographic_id;
+	public void setInfographic_url(String infographic_url) {
+		Infographic_url = infographic_url;
 	}
 	public int getTag_id() {
 		return Tag_id;
@@ -24,6 +24,8 @@ public class Infographic_TagModel {
 	public void setTag_id(int tag_id) {
 		Tag_id = tag_id;
 	}
+	
+
 	
 	
 }
